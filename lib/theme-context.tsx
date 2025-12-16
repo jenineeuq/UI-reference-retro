@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-export type ColorTheme = "amber" | "sage" | "rose" | "sky" | "violet" | "slate";
+export type ColorTheme = "terracotta" | "olive" | "mustard" | "avocado" | "teal" | "dusty-rose" | "mint" | "cream";
 
 interface ThemeContextType {
   colorTheme: ColorTheme;
@@ -11,17 +11,19 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const colorThemes: Record<ColorTheme, { name: string; primary: string; preview: string }> = {
-  amber: { name: "Amber", primary: "amber", preview: "#f59e0b" },
-  sage: { name: "Sage", primary: "emerald", preview: "#10b981" },
-  rose: { name: "Rose", primary: "rose", preview: "#f43f5e" },
-  sky: { name: "Sky", primary: "sky", preview: "#0ea5e9" },
-  violet: { name: "Violet", primary: "violet", preview: "#8b5cf6" },
-  slate: { name: "Slate", primary: "slate", preview: "#64748b" },
+export const colorThemes: Record<ColorTheme, { name: string; primary: string; preview: string; category: string }> = {
+  terracotta: { name: "Terracotta", primary: "terracotta", preview: "#C2452D", category: "Warm Earthy" },
+  olive: { name: "Olive", primary: "olive", preview: "#6B7C3E", category: "Warm Earthy" },
+  mustard: { name: "Mustard", primary: "mustard", preview: "#D4A012", category: "Warm Earthy" },
+  avocado: { name: "Avocado", primary: "avocado", preview: "#568203", category: "Mid-Century" },
+  teal: { name: "Teal", primary: "teal", preview: "#008080", category: "Mid-Century" },
+  "dusty-rose": { name: "Dusty Rose", primary: "dusty-rose", preview: "#C48B9F", category: "Soft Pastel" },
+  mint: { name: "Mint", primary: "mint", preview: "#98D4BB", category: "Soft Pastel" },
+  cream: { name: "Cream", primary: "cream", preview: "#F5F0E1", category: "Neutral" },
 };
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [colorTheme, setColorTheme] = useState<ColorTheme>("amber");
+  const [colorTheme, setColorTheme] = useState<ColorTheme>("terracotta");
 
   useEffect(() => {
     const saved = localStorage.getItem("retro-color-theme") as ColorTheme;

@@ -45,23 +45,23 @@ export default function HomePage() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center space-y-4 py-12"
       >
-        <div className="inline-flex items-center gap-2 px-4 py-2 border-4 border-amber-600 dark:border-amber-500 bg-amber-100 dark:bg-amber-900/30 shadow-[4px_4px_0px_0px_rgba(180,83,9,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,158,11,0.5)] mb-4">
-          <Monitor className="w-4 h-4 text-amber-700 dark:text-amber-400" />
-          <span className="text-sm font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">Retro Style</span>
+        <div className="inline-flex items-center gap-2 px-4 py-2 border-4 theme-border theme-bg-dark theme-shadow mb-4">
+          <Monitor className="w-4 h-4 theme-text-muted" />
+          <span className="text-sm font-bold uppercase tracking-wider theme-text">Retro Style</span>
         </div>
-        <h1 className="text-5xl font-black uppercase tracking-tight text-amber-900 dark:text-amber-100">
+        <h1 className="text-5xl font-black uppercase tracking-tight theme-text">
           UI Component Reference
         </h1>
-        <p className="text-lg text-amber-700 dark:text-amber-300 max-w-2xl mx-auto">
-          A comprehensive library of <span className="font-bold text-amber-900 dark:text-amber-100">{componentRegistry.length} UI components</span> in
+        <p className="text-lg theme-text-muted max-w-2xl mx-auto">
+          A comprehensive library of <span className="font-bold theme-text">{componentRegistry.length} UI components</span> in
           classic retro style. Browse, explore, and get inspired.
         </p>
-        <div className="flex items-center justify-center gap-4 text-sm text-amber-600 dark:text-amber-400 uppercase tracking-wide">
+        <div className="flex items-center justify-center gap-4 text-sm theme-text-muted uppercase tracking-wide">
           <span className="flex items-center gap-1">
             <Layers className="w-4 h-4" />
             {categories.length - 1} Categories
           </span>
-          <span className="text-amber-400">■</span>
+          <span className="theme-text-subtle">■</span>
           <span>{componentRegistry.length} Components</span>
         </div>
       </motion.div>
@@ -70,13 +70,13 @@ export default function HomePage() {
       <div className="space-y-4">
         {/* Search Bar */}
         <div className="relative max-w-2xl mx-auto">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-amber-600 dark:text-amber-400" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 theme-text-muted" />
           <input
             type="text"
             placeholder="SEARCH COMPONENTS..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-100 placeholder-amber-400 dark:placeholder-amber-600 font-mono uppercase tracking-wide focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(180,83,9,1)] dark:focus:shadow-[4px_4px_0px_0px_rgba(245,158,11,0.5)] transition-all"
+            className="w-full pl-12 pr-4 py-3 border-4 theme-border theme-bg theme-text placeholder:theme-text-subtle font-mono uppercase tracking-wide focus:outline-none focus:theme-shadow transition-all"
           />
         </div>
 
@@ -91,8 +91,8 @@ export default function HomePage() {
               }}
               className={`px-4 py-2 border-4 text-sm font-bold uppercase tracking-wide transition-all ${
                 selectedCategory === category
-                  ? "border-amber-600 dark:border-amber-400 bg-amber-500 dark:bg-amber-600 text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                  : "border-amber-300 dark:border-amber-700 bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-amber-800/50 hover:shadow-[2px_2px_0px_0px_rgba(180,83,9,0.5)]"
+                  ? "theme-border theme-btn text-white theme-shadow"
+                  : "theme-border-light theme-bg theme-text-muted hover:theme-bg-dark"
               }`}
             >
               {category}
@@ -112,8 +112,8 @@ export default function HomePage() {
               onClick={() => setSelectedSubcategory(null)}
               className={`px-3 py-1.5 border-2 text-xs font-bold uppercase tracking-wide transition-all ${
                 !selectedSubcategory
-                  ? "border-amber-600 dark:border-amber-400 bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200"
-                  : "border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/50"
+                  ? "theme-border theme-bg-header theme-text"
+                  : "theme-border-light theme-bg theme-text-muted hover:theme-bg-dark"
               }`}
             >
               All {selectedCategory}
@@ -124,8 +124,8 @@ export default function HomePage() {
                 onClick={() => setSelectedSubcategory(sub)}
                 className={`px-3 py-1.5 border-2 text-xs font-bold uppercase tracking-wide transition-all ${
                   selectedSubcategory === sub
-                    ? "border-amber-600 dark:border-amber-400 bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200"
-                    : "border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/50"
+                    ? "theme-border theme-bg-header theme-text"
+                    : "theme-border-light theme-bg theme-text-muted hover:theme-bg-dark"
                 }`}
               >
                 {sub}
@@ -139,7 +139,7 @@ export default function HomePage() {
       {Object.entries(groupedComponents).map(([group, components]) => (
         <div key={group} className="space-y-4">
           {selectedCategory !== "All" && Object.keys(groupedComponents).length > 1 && (
-            <h2 className="text-lg font-bold uppercase tracking-wide text-amber-700 dark:text-amber-300 border-b-4 border-amber-300 dark:border-amber-700 pb-2">
+            <h2 className="text-lg font-bold uppercase tracking-wide theme-text-muted border-b-4 theme-border-light pb-2">
               {group}
             </h2>
           )}
@@ -152,25 +152,25 @@ export default function HomePage() {
                 transition={{ delay: index * 0.02 }}
               >
                 <Link href={`/component/${component.id}`}>
-                  <div className="group h-full p-5 border-4 border-amber-400 dark:border-amber-600 bg-amber-50 dark:bg-amber-950/30 hover:shadow-[6px_6px_0px_0px_rgba(180,83,9,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(245,158,11,0.5)] hover:border-amber-600 dark:hover:border-amber-400 transition-all duration-200 cursor-pointer">
+                  <div className="group h-full p-5 border-4 theme-border-light theme-bg hover:theme-shadow hover:theme-border transition-all duration-200 cursor-pointer">
                     <div className="space-y-3">
                       {/* Component Icon */}
-                      <div className="w-12 h-12 border-4 border-amber-500 dark:border-amber-500 bg-amber-200 dark:bg-amber-800 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-[3px_3px_0px_0px_rgba(0,0,0,0.3)]">
-                        <Monitor className="w-6 h-6 text-amber-700 dark:text-amber-300" />
+                      <div className="w-12 h-12 border-4 theme-border theme-bg-header flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform retro-shadow-sm">
+                        <Monitor className="w-6 h-6 theme-text-muted" />
                       </div>
 
                       <div>
-                        <h3 className="font-bold uppercase tracking-wide text-amber-900 dark:text-amber-100 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
+                        <h3 className="font-bold uppercase tracking-wide theme-text group-hover:theme-text-muted transition-colors">
                           {component.name}
                         </h3>
                         {component.subcategory && (
-                          <span className="text-xs uppercase tracking-wider text-amber-500 dark:text-amber-500">
+                          <span className="text-xs uppercase tracking-wider theme-text-subtle">
                             {component.category} / {component.subcategory}
                           </span>
                         )}
                       </div>
 
-                      <p className="text-sm text-amber-700 dark:text-amber-400 line-clamp-2">
+                      <p className="text-sm theme-text-muted line-clamp-2">
                         {component.description}
                       </p>
                     </div>
@@ -184,13 +184,13 @@ export default function HomePage() {
 
       {filteredComponents.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-amber-600 dark:text-amber-400 uppercase tracking-wide">No components found matching your criteria.</p>
+          <p className="theme-text-muted uppercase tracking-wide">No components found matching your criteria.</p>
         </div>
       )}
 
       {/* Stats Footer */}
-      <div className="text-center py-8 border-t-4 border-amber-300 dark:border-amber-700">
-        <p className="text-sm text-amber-600 dark:text-amber-400 uppercase tracking-wide">
+      <div className="text-center py-8 border-t-4 theme-border-light">
+        <p className="text-sm theme-text-muted uppercase tracking-wide">
           Showing {filteredComponents.length} of {componentRegistry.length} components
         </p>
       </div>
