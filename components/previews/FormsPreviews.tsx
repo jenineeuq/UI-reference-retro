@@ -6,10 +6,10 @@ import {
   Underline, List, Plus, Trash2, Check
 } from "lucide-react";
 
-// Retro style classes
-const retroInput = "w-full px-4 py-2.5 border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 text-amber-900 dark:text-amber-100 font-mono uppercase tracking-wide focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(180,83,9,1)] dark:focus:shadow-[4px_4px_0px_0px_rgba(245,158,11,0.5)] transition-all placeholder-amber-400 dark:placeholder-amber-600";
-const retroButton = "px-4 py-2.5 border-4 border-amber-600 dark:border-amber-500 bg-amber-500 dark:bg-amber-600 text-white font-bold uppercase tracking-wide shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all";
-const retroLabel = "block text-sm font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300 mb-2";
+// Retro style classes using theme variables
+const retroInput = "w-full px-4 py-2.5 border-4 theme-border theme-bg theme-text font-mono uppercase tracking-wide focus:outline-none focus:theme-shadow transition-all placeholder:theme-text-subtle";
+const retroButton = "px-4 py-2.5 border-4 theme-border theme-btn text-white font-bold uppercase tracking-wide shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all";
+const retroLabel = "block text-sm font-bold uppercase tracking-wide theme-text mb-2";
 
 // Input Preview
 export function InputPreview() {
@@ -35,7 +35,7 @@ export function InputPreview() {
           />
           <button
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-amber-600 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-200"
+            className="absolute right-3 top-1/2 -translate-y-1/2 theme-text-muted hover:theme-text"
           >
             {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
           </button>
@@ -70,7 +70,7 @@ export function TextareaPreview() {
         maxLength={maxLength}
         className={`${retroInput} resize-none`}
       />
-      <div className="flex justify-between mt-2 text-xs text-amber-600 dark:text-amber-400 uppercase">
+      <div className="flex justify-between mt-2 text-xs theme-text-muted uppercase">
         <span>{value.length}/{maxLength} chars</span>
         <span>■ Retro Mode</span>
       </div>
@@ -92,18 +92,18 @@ export function SelectPreview() {
           onClick={() => setOpen(!open)}
           className={`${retroInput} flex items-center justify-between cursor-pointer text-left`}
         >
-          <span className={selected ? "text-amber-900 dark:text-amber-100" : "text-amber-400 dark:text-amber-600"}>
+          <span className={selected ? "theme-text" : "theme-text-subtle"}>
             {selected || "SELECT..."}
           </span>
-          <ChevronDown className={`w-5 h-5 text-amber-600 transition-transform ${open ? "rotate-180" : ""}`} />
+          <ChevronDown className={`w-5 h-5 theme-text-muted transition-transform ${open ? "rotate-180" : ""}`} />
         </button>
         {open && (
-          <div className="absolute z-10 w-full mt-1 border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div className="absolute z-10 w-full mt-1 border-4 theme-border theme-bg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             {options.map((option) => (
               <button
                 key={option}
                 onClick={() => { setSelected(option); setOpen(false); }}
-                className="w-full px-4 py-2 text-left text-amber-800 dark:text-amber-200 hover:bg-amber-200 dark:hover:bg-amber-800 uppercase text-sm transition-colors"
+                className="w-full px-4 py-2 text-left theme-text hover:theme-bg-header uppercase text-sm transition-colors"
               >
                 {option}
               </button>
@@ -131,11 +131,11 @@ export function MultiSelectPreview() {
   return (
     <div className="w-full max-w-sm font-mono">
       <label className={retroLabel}>Select Technologies</label>
-      <div className="border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 p-2">
+      <div className="border-4 theme-border theme-bg p-2">
         {selected.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-2">
             {selected.map(item => (
-              <span key={item} className="inline-flex items-center gap-1 px-2 py-1 bg-amber-500 text-white text-xs uppercase">
+              <span key={item} className="inline-flex items-center gap-1 px-2 py-1 theme-btn text-white text-xs uppercase">
                 {item}
                 <button onClick={() => toggleOption(item)}>
                   <X className="w-3 h-3" />
@@ -149,7 +149,7 @@ export function MultiSelectPreview() {
             <button
               key={option}
               onClick={() => toggleOption(option)}
-              className="w-full px-3 py-1.5 text-left text-amber-700 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-amber-800 text-sm uppercase transition-colors"
+              className="w-full px-3 py-1.5 text-left theme-text-muted hover:theme-bg-header text-sm uppercase transition-colors"
             >
               + {option}
             </button>
@@ -174,11 +174,11 @@ export function DatePickerPreview() {
           onChange={(e) => setDate(e.target.value)}
           className={`${retroInput} cursor-pointer`}
         />
-        <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-amber-600 pointer-events-none" />
+        <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 theme-text-muted pointer-events-none" />
       </div>
-      <div className="mt-4 p-3 border-4 border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900/50">
-        <div className="text-xs text-amber-600 dark:text-amber-400 uppercase mb-2">■ Selected:</div>
-        <div className="text-amber-900 dark:text-amber-100 font-bold">
+      <div className="mt-4 p-3 border-4 theme-border-light theme-bg-dark">
+        <div className="text-xs theme-text-muted uppercase mb-2">■ Selected:</div>
+        <div className="theme-text font-bold">
           {date || "NO DATE SELECTED"}
         </div>
       </div>
@@ -207,12 +207,12 @@ export function FileUploadPreview() {
         onDrop={handleDrop}
         className={`border-4 border-dashed p-8 text-center cursor-pointer transition-all ${
           dragOver
-            ? "border-amber-500 bg-amber-200 dark:bg-amber-800"
-            : "border-amber-400 dark:border-amber-600 bg-amber-50 dark:bg-amber-950 hover:border-amber-500"
+            ? "theme-border theme-bg-header"
+            : "theme-border-light theme-bg hover:theme-border"
         }`}
       >
-        <Upload className="w-10 h-10 mx-auto mb-3 text-amber-500" />
-        <p className="text-amber-700 dark:text-amber-300 uppercase text-sm">
+        <Upload className="w-10 h-10 mx-auto mb-3 theme-text-muted" />
+        <p className="theme-text-muted uppercase text-sm">
           Drop files here or click to upload
         </p>
         <input
@@ -228,8 +228,8 @@ export function FileUploadPreview() {
       {files.length > 0 && (
         <div className="mt-3 space-y-1">
           {files.map((file, i) => (
-            <div key={i} className="flex items-center justify-between px-3 py-2 bg-amber-200 dark:bg-amber-800 text-sm">
-              <span className="text-amber-800 dark:text-amber-200 uppercase truncate">{file}</span>
+            <div key={i} className="flex items-center justify-between px-3 py-2 theme-bg-header text-sm">
+              <span className="theme-text uppercase truncate">{file}</span>
               <button onClick={() => setFiles(files.filter((_, idx) => idx !== i))} className="text-red-500 hover:text-red-700">
                 <X className="w-4 h-4" />
               </button>
@@ -248,15 +248,15 @@ export function RichTextEditorPreview() {
   return (
     <div className="w-full max-w-md font-mono">
       <label className={retroLabel}>Rich Text Editor</label>
-      <div className="border-4 border-amber-600 dark:border-amber-500">
+      <div className="border-4 theme-border">
         {/* Toolbar */}
-        <div className="flex gap-1 p-2 bg-amber-200 dark:bg-amber-800 border-b-4 border-amber-600 dark:border-amber-500">
+        <div className="flex gap-1 p-2 theme-bg-header border-b-4 theme-border">
           {[Bold, Italic, Underline, List].map((Icon, i) => (
             <button
               key={i}
-              className="p-2 border-2 border-amber-500 bg-amber-100 dark:bg-amber-700 hover:bg-amber-300 dark:hover:bg-amber-600 transition-colors"
+              className="p-2 border-2 theme-border-light theme-bg hover:theme-bg-dark transition-colors"
             >
-              <Icon className="w-4 h-4 text-amber-800 dark:text-amber-200" />
+              <Icon className="w-4 h-4 theme-text" />
             </button>
           ))}
         </div>
@@ -264,7 +264,7 @@ export function RichTextEditorPreview() {
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="w-full p-4 bg-amber-50 dark:bg-amber-950 text-amber-900 dark:text-amber-100 min-h-[150px] resize-none focus:outline-none"
+          className="w-full p-4 theme-bg theme-text min-h-[150px] resize-none focus:outline-none"
         />
       </div>
     </div>
@@ -299,11 +299,11 @@ export function OtpInputPreview() {
             maxLength={1}
             value={digit}
             onChange={(e) => handleChange(i, e.target.value)}
-            className="w-12 h-14 text-center text-2xl font-bold border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 text-amber-900 dark:text-amber-100 focus:outline-none focus:shadow-[3px_3px_0px_0px_rgba(180,83,9,1)]"
+            className="w-12 h-14 text-center text-2xl font-bold border-4 theme-border theme-bg theme-text focus:outline-none focus:theme-shadow"
           />
         ))}
       </div>
-      <p className="mt-4 text-sm text-amber-600 dark:text-amber-400 uppercase">
+      <p className="mt-4 text-sm theme-text-muted uppercase">
         Code: {otp.join("") || "------"}
       </p>
     </div>
@@ -323,13 +323,13 @@ export function CheckboxPreview() {
             onClick={() => setChecked({ ...checked, [key]: !value })}
             className={`w-6 h-6 border-4 flex items-center justify-center transition-all ${
               value
-                ? "border-amber-600 bg-amber-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                : "border-amber-400 dark:border-amber-600 bg-amber-50 dark:bg-amber-950 group-hover:border-amber-500"
+                ? "theme-border theme-btn shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                : "theme-border-light theme-bg group-hover:theme-border"
             }`}
           >
             {value && <Check className="w-4 h-4 text-white" />}
           </div>
-          <span className="text-amber-800 dark:text-amber-200 uppercase text-sm">
+          <span className="theme-text uppercase text-sm">
             {key === "terms" ? "Accept Terms" : key === "newsletter" ? "Subscribe Newsletter" : "Product Updates"}
           </span>
         </label>
@@ -357,15 +357,15 @@ export function RadioGroupPreview() {
               onClick={() => setSelected(option.value)}
               className={`w-6 h-6 border-4 flex items-center justify-center transition-all ${
                 selected === option.value
-                  ? "border-amber-600 bg-amber-100 dark:bg-amber-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                  : "border-amber-400 dark:border-amber-600 bg-amber-50 dark:bg-amber-950 group-hover:border-amber-500"
+                  ? "theme-border theme-bg-dark shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                  : "theme-border-light theme-bg group-hover:theme-border"
               }`}
             >
               {selected === option.value && (
-                <div className="w-3 h-3 bg-amber-500" />
+                <div className="w-3 h-3 theme-accent-bg" />
               )}
             </div>
-            <span className="text-amber-800 dark:text-amber-200 uppercase text-sm">{option.label}</span>
+            <span className="theme-text uppercase text-sm">{option.label}</span>
           </label>
         ))}
       </div>
@@ -382,19 +382,19 @@ export function SwitchPreview() {
       <label className={retroLabel}>Toggle Settings</label>
       {Object.entries(switches).map(([key, value]) => (
         <div key={key} className="flex items-center justify-between">
-          <span className="text-amber-800 dark:text-amber-200 uppercase text-sm">
+          <span className="theme-text uppercase text-sm">
             {key === "darkMode" ? "Dark Mode" : key === "notifications" ? "Notifications" : "Auto Save"}
           </span>
           <button
             onClick={() => setSwitches({ ...switches, [key]: !value })}
             className={`relative w-14 h-8 border-4 transition-all ${
               value
-                ? "border-amber-600 bg-amber-500 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                : "border-amber-400 dark:border-amber-600 bg-amber-200 dark:bg-amber-800"
+                ? "theme-border theme-btn shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                : "theme-border-light theme-bg-header"
             }`}
           >
             <div
-              className={`absolute top-0 w-5 h-5 bg-white border-2 border-amber-700 transition-all ${
+              className={`absolute top-0 w-5 h-5 bg-white border-2 border-black transition-all ${
                 value ? "left-6" : "left-0"
               }`}
             />
@@ -419,16 +419,16 @@ export function SliderPreview() {
           max="100"
           value={value}
           onChange={(e) => setValue(Number(e.target.value))}
-          className="w-full h-4 appearance-none bg-amber-200 dark:bg-amber-800 border-4 border-amber-600 cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:bg-amber-500 [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-amber-700"
+          className="w-full h-4 appearance-none theme-bg-header border-4 theme-border cursor-pointer"
         />
-        <div className="flex justify-between text-amber-600 dark:text-amber-400 text-xs uppercase">
+        <div className="flex justify-between theme-text-muted text-xs uppercase">
           <span>0</span>
-          <span className="text-amber-900 dark:text-amber-100 font-bold text-lg">{value}</span>
+          <span className="theme-text font-bold text-lg">{value}</span>
           <span>100</span>
         </div>
-        <div className="h-4 border-4 border-amber-600 dark:border-amber-500 bg-amber-200 dark:bg-amber-900">
+        <div className="h-4 border-4 theme-border theme-bg-header">
           <div
-            className="h-full bg-amber-500 transition-all"
+            className="h-full theme-accent-bg transition-all"
             style={{ width: `${value}%` }}
           />
         </div>
@@ -488,34 +488,34 @@ export function MultiStepFormPreview() {
             key={s}
             className={`flex-1 h-3 border-4 ${
               s <= step
-                ? "border-amber-600 bg-amber-500"
-                : "border-amber-300 dark:border-amber-700 bg-amber-100 dark:bg-amber-900"
+                ? "theme-border theme-btn"
+                : "theme-border-light theme-bg-dark"
             }`}
           />
         ))}
       </div>
-      <div className="text-center mb-4 text-amber-600 dark:text-amber-400 uppercase text-sm">
+      <div className="text-center mb-4 theme-text-muted uppercase text-sm">
         Step {step} of {totalSteps}
       </div>
 
       {/* Step Content */}
-      <div className="space-y-4 p-4 border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+      <div className="space-y-4 p-4 border-4 theme-border theme-bg">
         {step === 1 && (
           <>
-            <h3 className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Personal Info</h3>
+            <h3 className="font-bold uppercase theme-text">■ Personal Info</h3>
             <input type="text" placeholder="FULL NAME..." className={retroInput} />
           </>
         )}
         {step === 2 && (
           <>
-            <h3 className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Contact Details</h3>
+            <h3 className="font-bold uppercase theme-text">■ Contact Details</h3>
             <input type="email" placeholder="EMAIL..." className={retroInput} />
           </>
         )}
         {step === 3 && (
           <>
-            <h3 className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Confirmation</h3>
-            <p className="text-amber-700 dark:text-amber-300 text-sm">Review your information and submit.</p>
+            <h3 className="font-bold uppercase theme-text">■ Confirmation</h3>
+            <p className="theme-text-muted text-sm">Review your information and submit.</p>
           </>
         )}
       </div>
@@ -525,8 +525,8 @@ export function MultiStepFormPreview() {
         <button
           onClick={() => setStep(Math.max(1, step - 1))}
           disabled={step === 1}
-          className={`flex-1 px-4 py-2 border-4 border-amber-400 dark:border-amber-600 uppercase font-bold ${
-            step === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-amber-200 dark:hover:bg-amber-800"
+          className={`flex-1 px-4 py-2 border-4 theme-border-light uppercase font-bold theme-text ${
+            step === 1 ? "opacity-50 cursor-not-allowed" : "hover:theme-bg-header"
           }`}
         >
           Back
@@ -555,33 +555,33 @@ export function MultiStepFormDialogPreview() {
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="w-full max-w-md border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <div className="w-full max-w-md border-4 theme-border theme-bg shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b-4 border-amber-600 dark:border-amber-500 bg-amber-200 dark:bg-amber-800">
-              <h2 className="font-bold uppercase text-amber-900 dark:text-amber-100">Registration</h2>
-              <button onClick={() => { setOpen(false); setStep(1); }} className="text-amber-700 dark:text-amber-300 hover:text-amber-900">
+            <div className="flex items-center justify-between p-4 border-b-4 theme-border theme-bg-header">
+              <h2 className="font-bold uppercase theme-text">Registration</h2>
+              <button onClick={() => { setOpen(false); setStep(1); }} className="theme-text-muted hover:theme-text">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Progress */}
-            <div className="flex gap-1 p-4 bg-amber-100 dark:bg-amber-900">
+            <div className="flex gap-1 p-4 theme-bg-dark">
               {[1, 2, 3].map(s => (
-                <div key={s} className={`flex-1 h-2 ${s <= step ? "bg-amber-500" : "bg-amber-300 dark:bg-amber-700"}`} />
+                <div key={s} className={`flex-1 h-2 ${s <= step ? "theme-accent-bg" : "theme-bg-header"}`} />
               ))}
             </div>
 
             {/* Content */}
             <div className="p-4 space-y-4">
-              <div className="text-center text-amber-600 dark:text-amber-400 uppercase text-sm">Step {step}/3</div>
+              <div className="text-center theme-text-muted uppercase text-sm">Step {step}/3</div>
               <input type="text" placeholder={`FIELD FOR STEP ${step}...`} className={retroInput} />
             </div>
 
             {/* Footer */}
-            <div className="flex gap-2 p-4 border-t-4 border-amber-400 dark:border-amber-600">
+            <div className="flex gap-2 p-4 border-t-4 theme-border-light">
               <button
                 onClick={() => step > 1 ? setStep(step - 1) : setOpen(false)}
-                className="flex-1 px-4 py-2 border-4 border-amber-400 dark:border-amber-600 uppercase font-bold hover:bg-amber-200 dark:hover:bg-amber-800"
+                className="flex-1 px-4 py-2 border-4 theme-border-light uppercase font-bold theme-text hover:theme-bg-header"
               >
                 {step > 1 ? "Back" : "Cancel"}
               </button>
@@ -624,7 +624,7 @@ export function FieldArrayPreview() {
       <div className="space-y-2">
         {fields.map((field, index) => (
           <div key={field.id} className="flex gap-2">
-            <div className="w-8 h-full flex items-center justify-center border-4 border-amber-400 dark:border-amber-600 bg-amber-200 dark:bg-amber-800 text-amber-700 dark:text-amber-300 font-bold">
+            <div className="w-8 h-full flex items-center justify-center border-4 theme-border-light theme-bg-header theme-text-muted font-bold">
               {index + 1}
             </div>
             <input

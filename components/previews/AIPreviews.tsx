@@ -27,11 +27,11 @@ export function ChatInterfacePreview() {
   };
 
   return (
-    <div className="w-full max-w-md font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+    <div className="w-full max-w-md font-mono border-4 theme-border theme-bg">
       {/* Header */}
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex items-center gap-2">
-        <Bot className="w-5 h-5 text-amber-700 dark:text-amber-300" />
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ AI Chat</span>
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header flex items-center gap-2">
+        <Bot className="w-5 h-5 theme-text-muted" />
+        <span className="font-bold uppercase theme-text">■ AI Chat</span>
         <span className="ml-auto w-2 h-2 bg-green-500 animate-pulse" />
       </div>
 
@@ -40,19 +40,19 @@ export function ChatInterfacePreview() {
         {messages.map((msg, i) => (
           <div key={i} className={`flex gap-2 ${msg.role === "user" ? "justify-end" : ""}`}>
             {msg.role === "assistant" && (
-              <div className="w-8 h-8 border-2 border-amber-500 bg-amber-300 dark:bg-amber-700 flex items-center justify-center flex-shrink-0">
-                <Bot className="w-4 h-4 text-amber-700 dark:text-amber-300" />
+              <div className="w-8 h-8 border-2 theme-border theme-bg-header flex items-center justify-center flex-shrink-0">
+                <Bot className="w-4 h-4 theme-text-muted" />
               </div>
             )}
             <div className={`max-w-[80%] px-3 py-2 border-4 ${
               msg.role === "user"
-                ? "border-amber-600 bg-amber-500 text-white"
-                : "border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200"
+                ? "theme-border theme-accent-bg text-white"
+                : "theme-border-light theme-bg-dark theme-text"
             }`}>
               <p className="text-sm">{msg.content}</p>
             </div>
             {msg.role === "user" && (
-              <div className="w-8 h-8 border-2 border-amber-500 bg-amber-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 border-2 theme-border theme-accent-bg flex items-center justify-center flex-shrink-0">
                 <User className="w-4 h-4 text-white" />
               </div>
             )}
@@ -61,7 +61,7 @@ export function ChatInterfacePreview() {
       </div>
 
       {/* Input */}
-      <div className="p-3 border-t-4 border-amber-500 bg-amber-100 dark:bg-amber-900">
+      <div className="p-3 border-t-4 theme-border theme-bg-dark">
         <div className="flex gap-2">
           <input
             type="text"
@@ -69,11 +69,11 @@ export function ChatInterfacePreview() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             placeholder="TYPE YOUR MESSAGE..."
-            className="flex-1 px-3 py-2 border-4 border-amber-500 bg-amber-50 dark:bg-amber-950 text-amber-900 dark:text-amber-100 uppercase text-sm focus:outline-none"
+            className="flex-1 px-3 py-2 border-4 theme-border theme-bg theme-text uppercase text-sm focus:outline-none"
           />
           <button
             onClick={sendMessage}
-            className="px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
+            className="px-4 py-2 border-4 theme-border theme-accent-bg text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
           >
             <Send className="w-5 h-5" />
           </button>
@@ -91,26 +91,26 @@ export function ChatMessagePreview() {
     <div className="w-full max-w-md font-mono space-y-3">
       {/* User Message */}
       <div className="flex gap-2 justify-end">
-        <div className="max-w-[80%] px-3 py-2 border-4 border-amber-600 bg-amber-500 text-white">
+        <div className="max-w-[80%] px-3 py-2 border-4 theme-border theme-accent-bg text-white">
           <p className="text-sm uppercase">How do I create a React component?</p>
         </div>
-        <div className="w-8 h-8 border-2 border-amber-500 bg-amber-500 flex items-center justify-center flex-shrink-0">
+        <div className="w-8 h-8 border-2 theme-border theme-accent-bg flex items-center justify-center flex-shrink-0">
           <User className="w-4 h-4 text-white" />
         </div>
       </div>
 
       {/* Assistant Message with actions */}
       <div className="flex gap-2">
-        <div className="w-8 h-8 border-2 border-amber-500 bg-amber-300 dark:bg-amber-700 flex items-center justify-center flex-shrink-0">
-          <Bot className="w-4 h-4 text-amber-700 dark:text-amber-300" />
+        <div className="w-8 h-8 border-2 theme-border theme-bg-header flex items-center justify-center flex-shrink-0">
+          <Bot className="w-4 h-4 theme-text-muted" />
         </div>
         <div className="flex-1">
-          <div className="px-3 py-2 border-4 border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900">
-            <p className="text-sm text-amber-800 dark:text-amber-200 uppercase">
+          <div className="px-3 py-2 border-4 theme-border-light theme-bg-dark">
+            <p className="text-sm theme-text uppercase">
               HERE&apos;S HOW TO CREATE A REACT COMPONENT:
             </p>
-            <div className="mt-2 p-2 bg-amber-200 dark:bg-amber-800 border-2 border-amber-500 font-mono text-xs">
-              <code className="text-amber-900 dark:text-amber-100">
+            <div className="mt-2 p-2 theme-bg-header border-2 theme-border font-mono text-xs">
+              <code className="theme-text">
                 function MyComponent() {"{"}
                 <br />
                 {"  "}return {"<div>Hello!</div>"};
@@ -122,11 +122,11 @@ export function ChatMessagePreview() {
           <div className="flex gap-1 mt-1">
             <button
               onClick={() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-              className="px-2 py-1 text-xs uppercase font-bold text-amber-600 hover:bg-amber-200 dark:hover:bg-amber-800 border-2 border-transparent hover:border-amber-500"
+              className="px-2 py-1 text-xs uppercase font-bold theme-text-muted hover:theme-bg-header hover:theme-bg-header border-2 border-transparent hover:theme-border"
             >
               {copied ? <><Check className="w-3 h-3 inline" /> Copied</> : <><Copy className="w-3 h-3 inline" /> Copy</>}
             </button>
-            <button className="px-2 py-1 text-xs uppercase font-bold text-amber-600 hover:bg-amber-200 dark:hover:bg-amber-800 border-2 border-transparent hover:border-amber-500">
+            <button className="px-2 py-1 text-xs uppercase font-bold theme-text-muted hover:theme-bg-header hover:theme-bg-header border-2 border-transparent hover:theme-border">
               <RefreshCw className="w-3 h-3 inline" /> Regenerate
             </button>
           </div>
@@ -159,8 +159,8 @@ export function StreamingTextPreview() {
 
   return (
     <div className="w-full max-w-md font-mono">
-      <div className="p-4 border-4 border-amber-600 dark:border-amber-500 bg-amber-100 dark:bg-amber-900 min-h-[100px]">
-        <p className="text-amber-900 dark:text-amber-100">
+      <div className="p-4 border-4 theme-border theme-bg-dark min-h-[100px]">
+        <p className="theme-text">
           {text}
           {isStreaming && <span className="animate-pulse">█</span>}
         </p>
@@ -168,7 +168,7 @@ export function StreamingTextPreview() {
       <button
         onClick={startStreaming}
         disabled={isStreaming}
-        className="mt-3 px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] disabled:opacity-50"
+        className="mt-3 px-4 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] disabled:opacity-50"
       >
         {isStreaming ? "Streaming..." : "Start Stream"}
       </button>
@@ -182,24 +182,24 @@ export function PromptInputPreview() {
 
   return (
     <div className="w-full max-w-md font-mono">
-      <label className="block text-sm font-bold uppercase text-amber-800 dark:text-amber-300 mb-2">
+      <label className="block text-sm font-bold uppercase theme-text mb-2">
         ■ Enter Prompt
       </label>
-      <div className="border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+      <div className="border-4 theme-border theme-bg">
         <textarea
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="DESCRIBE WHAT YOU WANT THE AI TO DO..."
           rows={4}
-          className="w-full p-3 bg-transparent text-amber-900 dark:text-amber-100 uppercase resize-none focus:outline-none placeholder-amber-400"
+          className="w-full p-3 bg-transparent theme-text uppercase resize-none focus:outline-none placeholder:theme-text-subtle"
         />
-        <div className="flex items-center justify-between px-3 py-2 border-t-4 border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900">
-          <span className="text-xs text-amber-500">{prompt.length}/1000</span>
+        <div className="flex items-center justify-between px-3 py-2 border-t-4 theme-border-light theme-bg-dark">
+          <span className="text-xs theme-text-subtle">{prompt.length}/1000</span>
           <div className="flex gap-2">
-            <button className="p-1.5 border-2 border-amber-500 hover:bg-amber-200 dark:hover:bg-amber-800">
-              <Sparkles className="w-4 h-4 text-amber-600" />
+            <button className="p-1.5 border-2 theme-border hover:theme-bg-header hover:theme-bg-header">
+              <Sparkles className="w-4 h-4 theme-text-muted" />
             </button>
-            <button className="px-3 py-1 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <button className="px-3 py-1 border-4 theme-border theme-accent-bg text-white font-bold uppercase text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
               <Zap className="w-4 h-4 inline mr-1" />
               Generate
             </button>
@@ -221,15 +221,15 @@ export function CodeEditorPreview() {
 console.log(greet("World"));`);
 
   return (
-    <div className="w-full max-w-lg font-mono border-4 border-amber-600 dark:border-amber-500">
+    <div className="w-full max-w-lg font-mono border-4 theme-border">
       {/* Header */}
-      <div className="flex items-center justify-between px-3 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
+      <div className="flex items-center justify-between px-3 py-2 border-b-4 theme-border theme-bg-header">
         <div className="flex items-center gap-2">
-          <Code className="w-4 h-4 text-amber-700 dark:text-amber-300" />
-          <span className="font-bold uppercase text-sm text-amber-900 dark:text-amber-100">code.js</span>
+          <Code className="w-4 h-4 theme-text-muted" />
+          <span className="font-bold uppercase text-sm theme-text">code.js</span>
         </div>
         <div className="flex gap-1">
-          <button className="px-2 py-1 border-2 border-amber-500 text-xs uppercase font-bold text-amber-700 dark:text-amber-300 hover:bg-amber-300 dark:hover:bg-amber-700">
+          <button className="px-2 py-1 border-2 theme-border text-xs uppercase font-bold theme-text-muted hover:theme-bg-header hover:theme-bg-header">
             <Copy className="w-3 h-3 inline" />
           </button>
           <button className="px-2 py-1 border-2 border-green-500 bg-green-500 text-white text-xs uppercase font-bold">
@@ -239,9 +239,9 @@ console.log(greet("World"));`);
       </div>
 
       {/* Editor */}
-      <div className="flex bg-amber-950">
+      <div className="flex theme-bg">
         {/* Line numbers */}
-        <div className="px-2 py-3 text-right text-amber-600 text-sm select-none border-r-2 border-amber-700">
+        <div className="px-2 py-3 text-right theme-text-muted text-sm select-none border-r-2 theme-border">
           {code.split("\n").map((_, i) => (
             <div key={i}>{i + 1}</div>
           ))}
@@ -250,7 +250,7 @@ console.log(greet("World"));`);
         <textarea
           value={code}
           onChange={(e) => setCode(e.target.value)}
-          className="flex-1 p-3 bg-transparent text-amber-100 text-sm resize-none focus:outline-none"
+          className="flex-1 p-3 bg-transparent theme-text text-sm resize-none focus:outline-none"
           rows={5}
           spellCheck={false}
         />
@@ -273,17 +273,17 @@ export function CodeCompletionPreview() {
   return (
     <div className="w-full max-w-sm font-mono">
       <div className="relative">
-        <div className="p-3 border-4 border-amber-600 dark:border-amber-500 bg-amber-950">
-          <div className="text-amber-100">
+        <div className="p-3 border-4 theme-border theme-bg">
+          <div className="theme-text">
             <span className="text-purple-400">const</span> msg = <span className="text-green-400">&quot;Hello&quot;</span>;
           </div>
-          <div className="flex items-center text-amber-100">
-            <span className="text-amber-400">cons</span>
+          <div className="flex items-center theme-text">
+            <span className="theme-text-subtle">cons</span>
             <span className="animate-pulse">|</span>
             <button
               onMouseEnter={() => setShowSuggestion(true)}
               onMouseLeave={() => setShowSuggestion(false)}
-              className="ml-1 text-xs text-amber-500 border border-amber-600 px-1"
+              className="ml-1 text-xs theme-text-subtle border theme-border px-1"
             >
               Tab to complete
             </button>
@@ -291,22 +291,22 @@ export function CodeCompletionPreview() {
         </div>
 
         {showSuggestion && (
-          <div className="absolute top-full left-0 mt-1 w-48 border-4 border-amber-600 bg-amber-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div className="absolute top-full left-0 mt-1 w-48 border-4 theme-border theme-bg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             {suggestions.map((s, i) => (
               <div
                 key={i}
                 className={`px-3 py-1.5 flex items-center gap-2 text-sm ${
-                  i === 0 ? "bg-amber-800" : "hover:bg-amber-900"
+                  i === 0 ? "theme-bg-header" : "hover:theme-bg-dark"
                 }`}
               >
                 <span className="text-purple-400 text-xs">fn</span>
-                <span className="text-amber-100">{s.label}</span>
+                <span className="theme-text">{s.label}</span>
               </div>
             ))}
           </div>
         )}
       </div>
-      <div className="mt-2 text-xs text-amber-500 uppercase">■ AI-powered completions</div>
+      <div className="mt-2 text-xs theme-text-subtle uppercase">■ AI-powered completions</div>
     </div>
   );
 }
@@ -329,13 +329,13 @@ export function ImageGenerationPreview() {
 
   return (
     <div className="w-full max-w-sm font-mono">
-      <div className="border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+      <div className="border-4 theme-border theme-bg">
         {/* Preview */}
-        <div className="aspect-square bg-amber-200 dark:bg-amber-800 flex items-center justify-center border-b-4 border-amber-500">
+        <div className="aspect-square theme-bg-header flex items-center justify-center border-b-4 theme-border">
           {generating ? (
             <div className="text-center">
-              <RefreshCw className="w-12 h-12 mx-auto mb-2 text-amber-500 animate-spin" />
-              <span className="text-amber-600 uppercase text-sm">Generating...</span>
+              <RefreshCw className="w-12 h-12 mx-auto mb-2 theme-text-subtle animate-spin" />
+              <span className="theme-text-muted uppercase text-sm">Generating...</span>
             </div>
           ) : generated ? (
             <div className="w-full h-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 flex items-center justify-center">
@@ -343,8 +343,8 @@ export function ImageGenerationPreview() {
             </div>
           ) : (
             <div className="text-center">
-              <Image className="w-12 h-12 mx-auto mb-2 text-amber-400" />
-              <span className="text-amber-500 uppercase text-sm">No image</span>
+              <Image className="w-12 h-12 mx-auto mb-2 theme-text-subtle" />
+              <span className="theme-text-subtle uppercase text-sm">No image</span>
             </div>
           )}
         </div>
@@ -354,17 +354,17 @@ export function ImageGenerationPreview() {
           <input
             type="text"
             placeholder="DESCRIBE YOUR IMAGE..."
-            className="w-full px-3 py-2 border-4 border-amber-500 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100 uppercase text-sm focus:outline-none"
+            className="w-full px-3 py-2 border-4 theme-border theme-bg-dark theme-text uppercase text-sm focus:outline-none"
           />
           <div className="flex gap-2">
-            <select className="flex-1 px-2 py-1 border-4 border-amber-500 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-sm uppercase">
+            <select className="flex-1 px-2 py-1 border-4 theme-border theme-bg-dark theme-text text-sm uppercase">
               <option>512x512</option>
               <option>1024x1024</option>
             </select>
             <button
               onClick={generate}
               disabled={generating}
-              className="flex-1 px-3 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase text-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] disabled:opacity-50"
+              className="flex-1 px-3 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase text-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] disabled:opacity-50"
             >
               <Wand2 className="w-4 h-4 inline mr-1" />
               Generate
@@ -392,12 +392,12 @@ export function ModelSelectorPreview() {
     <div className="font-mono relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-4 py-2 border-4 border-amber-600 bg-amber-200 dark:bg-amber-800 font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]"
+        className="flex items-center gap-2 px-4 py-2 border-4 theme-border theme-bg-header font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]"
       >
-        <Bot className="w-5 h-5 text-amber-700 dark:text-amber-300" />
+        <Bot className="w-5 h-5 theme-text-muted" />
         <div className="text-left">
-          <div className="text-amber-900 dark:text-amber-100 uppercase">{model.name}</div>
-          <div className="text-xs text-amber-500">{model.desc}</div>
+          <div className="theme-text uppercase">{model.name}</div>
+          <div className="text-xs theme-text-subtle">{model.desc}</div>
         </div>
         <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
@@ -405,20 +405,20 @@ export function ModelSelectorPreview() {
       {open && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute z-20 top-full left-0 mt-1 w-64 border-4 border-amber-600 bg-amber-50 dark:bg-amber-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div className="absolute z-20 top-full left-0 mt-1 w-64 border-4 theme-border theme-bg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             {models.map(m => (
               <button
                 key={m.name}
                 onClick={() => { setModel(m); setOpen(false); }}
                 className={`w-full px-3 py-2 flex items-center justify-between text-left transition-colors ${
-                  model.name === m.name ? "bg-amber-200 dark:bg-amber-800" : "hover:bg-amber-100 dark:hover:bg-amber-900"
+                  model.name === m.name ? "theme-bg-header" : "hover:theme-bg-dark dark:hover:theme-bg-dark"
                 }`}
               >
                 <div>
-                  <div className="font-bold uppercase text-amber-900 dark:text-amber-100">{m.name}</div>
-                  <div className="text-xs text-amber-500">{m.desc}</div>
+                  <div className="font-bold uppercase theme-text">{m.name}</div>
+                  <div className="text-xs theme-text-subtle">{m.desc}</div>
                 </div>
-                <span className="text-xs px-1.5 py-0.5 bg-amber-300 dark:bg-amber-700 text-amber-700 dark:text-amber-300">
+                <span className="text-xs px-1.5 py-0.5 theme-bg-header theme-text-muted">
                   {m.tokens}
                 </span>
               </button>
@@ -437,30 +437,30 @@ export function AgentCardPreview() {
   const [running, setRunning] = useState(false);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-3 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex items-center justify-between">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-3 border-b-4 theme-border theme-bg-header flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 border-4 border-purple-500 bg-purple-400 flex items-center justify-center">
             <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
-            <div className="font-bold uppercase text-amber-900 dark:text-amber-100">Research Agent</div>
-            <div className="text-xs text-amber-500">v2.1.0</div>
+            <div className="font-bold uppercase theme-text">Research Agent</div>
+            <div className="text-xs theme-text-subtle">v2.1.0</div>
           </div>
         </div>
-        <div className={`w-3 h-3 ${running ? "bg-green-500 animate-pulse" : "bg-amber-400"}`} />
+        <div className={`w-3 h-3 ${running ? "bg-green-500 animate-pulse" : "theme-bg-header"}`} />
       </div>
       <div className="p-4 space-y-3">
-        <p className="text-sm text-amber-700 dark:text-amber-300">
+        <p className="text-sm theme-text-muted">
           Autonomous agent for web research and data gathering.
         </p>
         <div className="grid grid-cols-2 gap-2 text-center">
-          <div className="p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900">
-            <div className="text-xs text-amber-500 uppercase">Tasks</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">1,234</div>
+          <div className="p-2 border-2 theme-border-light theme-bg-dark">
+            <div className="text-xs theme-text-subtle uppercase">Tasks</div>
+            <div className="font-bold theme-text">1,234</div>
           </div>
-          <div className="p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900">
-            <div className="text-xs text-amber-500 uppercase">Success</div>
+          <div className="p-2 border-2 theme-border-light theme-bg-dark">
+            <div className="text-xs theme-text-subtle uppercase">Success</div>
             <div className="font-bold text-green-600">98.5%</div>
           </div>
         </div>
@@ -469,7 +469,7 @@ export function AgentCardPreview() {
           className={`w-full px-4 py-2 border-4 font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-2 ${
             running
               ? "border-red-600 bg-red-500 text-white"
-              : "border-amber-600 bg-amber-500 text-white"
+              : "theme-border theme-accent-bg text-white"
           }`}
         >
           {running ? <><Pause className="w-4 h-4" /> Stop</> : <><Play className="w-4 h-4" /> Start</>}
@@ -498,11 +498,11 @@ export function AgentStatusPreview() {
   }, []);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 p-4">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg p-4">
       <div className="flex items-center justify-between mb-4">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Agent Status</span>
-        <button className="p-1 border-2 border-amber-500 hover:bg-amber-200 dark:hover:bg-amber-800">
-          <RotateCcw className="w-4 h-4 text-amber-600" />
+        <span className="font-bold uppercase theme-text">■ Agent Status</span>
+        <button className="p-1 border-2 theme-border hover:theme-bg-header hover:theme-bg-header">
+          <RotateCcw className="w-4 h-4 theme-text-muted" />
         </button>
       </div>
       <div className="space-y-2">
@@ -510,18 +510,18 @@ export function AgentStatusPreview() {
           <div key={i} className="flex items-center gap-3">
             <div className={`w-6 h-6 border-4 flex items-center justify-center text-xs font-bold ${
               i < step ? "border-green-600 bg-green-500 text-white" :
-              i === step ? "border-amber-600 bg-amber-500 text-white animate-pulse" :
-              "border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900 text-amber-500"
+              i === step ? "theme-border theme-accent-bg text-white animate-pulse" :
+              "theme-border-light theme-bg-dark theme-text-subtle"
             }`}>
               {i < step ? "✓" : i + 1}
             </div>
             <span className={`text-sm uppercase ${
-              i <= step ? "text-amber-900 dark:text-amber-100 font-bold" : "text-amber-500"
+              i <= step ? "theme-text font-bold" : "theme-text-subtle"
             }`}>
               {s.label}
             </span>
             {i === step && (
-              <span className="ml-auto text-xs text-amber-500">In progress...</span>
+              <span className="ml-auto text-xs theme-text-subtle">In progress...</span>
             )}
           </div>
         ))}

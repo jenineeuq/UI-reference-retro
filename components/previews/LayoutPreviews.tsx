@@ -9,33 +9,33 @@ import {
 // Card Preview
 export function CardPreview() {
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 overflow-hidden">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg overflow-hidden">
       {/* Image */}
-      <div className="h-40 bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400 flex items-center justify-center border-b-4 border-amber-500">
+      <div className="h-40 bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400 flex items-center justify-center border-b-4 theme-border">
         <Image className="w-12 h-12 text-white/50" />
       </div>
 
       {/* Content */}
       <div className="p-4 space-y-3">
         <div>
-          <h3 className="font-bold uppercase text-amber-900 dark:text-amber-100">Card Title</h3>
-          <p className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+          <h3 className="font-bold uppercase theme-text">Card Title</h3>
+          <p className="text-sm theme-text-muted mt-1">
             This is a description of the card content in retro style.
           </p>
         </div>
 
-        <div className="flex items-center justify-between pt-3 border-t-4 border-amber-400 dark:border-amber-600">
+        <div className="flex items-center justify-between pt-3 border-t-4 theme-border-light">
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-1 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-200 uppercase font-bold">
+            <button className="flex items-center gap-1 text-sm theme-text-muted hover:theme-text hover:theme-text uppercase font-bold">
               <Heart className="w-4 h-4" />
               <span>24</span>
             </button>
-            <button className="flex items-center gap-1 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-200 uppercase font-bold">
+            <button className="flex items-center gap-1 text-sm theme-text-muted hover:theme-text hover:theme-text uppercase font-bold">
               <MessageCircle className="w-4 h-4" />
               <span>8</span>
             </button>
           </div>
-          <button className="flex items-center gap-1 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-200">
+          <button className="flex items-center gap-1 text-sm theme-text-muted hover:theme-text hover:theme-text">
             <Share className="w-4 h-4" />
           </button>
         </div>
@@ -55,18 +55,18 @@ export function AccordionPreview() {
   ];
 
   return (
-    <div className="w-full max-w-md font-mono border-4 border-amber-600 dark:border-amber-500 overflow-hidden">
+    <div className="w-full max-w-md font-mono border-4 theme-border overflow-hidden">
       {items.map((item, i) => (
-        <div key={i} className="border-b-4 border-amber-500 last:border-b-0">
+        <div key={i} className="border-b-4 theme-border last:border-b-0">
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            className="w-full flex items-center justify-between px-4 py-3 text-left bg-amber-100 dark:bg-amber-900 hover:bg-amber-200 dark:hover:bg-amber-800 transition-colors"
+            className="w-full flex items-center justify-between px-4 py-3 text-left theme-bg-dark hover:theme-bg-header hover:theme-bg-header transition-colors"
           >
-            <span className="font-bold uppercase text-sm text-amber-900 dark:text-amber-100">{item.title}</span>
-            <ChevronDown className={`w-5 h-5 text-amber-600 transition-transform ${openIndex === i ? "rotate-180" : ""}`} />
+            <span className="font-bold uppercase text-sm theme-text">{item.title}</span>
+            <ChevronDown className={`w-5 h-5 theme-text-muted transition-transform ${openIndex === i ? "rotate-180" : ""}`} />
           </button>
           {openIndex === i && (
-            <div className="px-4 py-3 bg-amber-50 dark:bg-amber-950 text-sm text-amber-700 dark:text-amber-300">
+            <div className="px-4 py-3 theme-bg text-sm theme-text-muted">
               {item.content}
             </div>
           )}
@@ -82,13 +82,13 @@ export function ScrollAreaPreview() {
 
   return (
     <div className="w-full max-w-xs font-mono">
-      <div className="text-sm font-bold uppercase text-amber-800 dark:text-amber-300 mb-2">■ Scrollable Content</div>
-      <div className="h-48 overflow-auto border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+      <div className="text-sm font-bold uppercase theme-text mb-2">■ Scrollable Content</div>
+      <div className="h-48 overflow-auto border-4 theme-border theme-bg">
         <div className="p-2 space-y-1">
           {items.map((item, i) => (
             <div
               key={i}
-              className="px-3 py-2 border-2 border-amber-400 dark:border-amber-600 hover:bg-amber-200 dark:hover:bg-amber-800 text-sm text-amber-800 dark:text-amber-200 uppercase cursor-pointer transition-colors"
+              className="px-3 py-2 border-2 theme-border-light hover:theme-bg-header hover:theme-bg-header text-sm theme-text uppercase cursor-pointer transition-colors"
             >
               {item}
             </div>
@@ -104,13 +104,13 @@ export function ResizablePanelsPreview() {
   const [leftWidth, setLeftWidth] = useState(40);
 
   return (
-    <div className="w-full max-w-md h-48 flex border-4 border-amber-600 dark:border-amber-500 overflow-hidden font-mono">
+    <div className="w-full max-w-md h-48 flex border-4 theme-border overflow-hidden font-mono">
       {/* Left panel */}
-      <div style={{ width: `${leftWidth}%` }} className="bg-amber-100 dark:bg-amber-900 p-3">
-        <div className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase mb-2">■ Sidebar</div>
+      <div style={{ width: `${leftWidth}%` }} className="theme-bg-dark p-3">
+        <div className="text-xs font-bold theme-text-muted uppercase mb-2">■ Sidebar</div>
         <div className="space-y-1">
           {["Dashboard", "Projects", "Settings"].map((item) => (
-            <div key={item} className="px-2 py-1 text-sm text-amber-800 dark:text-amber-200 border-2 border-transparent hover:border-amber-500 hover:bg-amber-200 dark:hover:bg-amber-800 cursor-pointer uppercase">
+            <div key={item} className="px-2 py-1 text-sm theme-text border-2 border-transparent hover:theme-border hover:theme-bg-header hover:theme-bg-header cursor-pointer uppercase">
               {item}
             </div>
           ))}
@@ -119,7 +119,7 @@ export function ResizablePanelsPreview() {
 
       {/* Resizer */}
       <div
-        className="w-2 bg-amber-500 hover:bg-amber-400 cursor-col-resize flex items-center justify-center group border-x-2 border-amber-700"
+        className="w-2 theme-accent-bg hover:theme-bg-header cursor-col-resize flex items-center justify-center group border-x-2 theme-border"
         onMouseDown={(e) => {
           const startX = e.clientX;
           const startWidth = leftWidth;
@@ -135,13 +135,13 @@ export function ResizablePanelsPreview() {
           document.addEventListener("mouseup", onUp);
         }}
       >
-        <GripVertical className="w-3 h-3 text-amber-900" />
+        <GripVertical className="w-3 h-3 theme-text" />
       </div>
 
       {/* Right panel */}
-      <div className="flex-1 p-3 bg-amber-50 dark:bg-amber-950">
-        <div className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase mb-2">■ Content</div>
-        <div className="text-sm text-amber-700 dark:text-amber-300">
+      <div className="flex-1 p-3 theme-bg">
+        <div className="text-xs font-bold theme-text-muted uppercase mb-2">■ Content</div>
+        <div className="text-sm theme-text-muted">
           Drag the handle to resize panels
         </div>
       </div>
@@ -164,7 +164,7 @@ export function CarouselPreview() {
 
   return (
     <div className="w-full max-w-sm font-mono">
-      <div className="relative border-4 border-amber-600 dark:border-amber-500">
+      <div className="relative border-4 theme-border">
         {/* Slides */}
         <div className="overflow-hidden">
           <div
@@ -185,13 +185,13 @@ export function CarouselPreview() {
         {/* Navigation */}
         <button
           onClick={prev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 border-4 border-amber-700 bg-amber-500 text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 border-4 theme-border theme-accent-bg text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
           onClick={next}
-          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 border-4 border-amber-700 bg-amber-500 text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 border-4 theme-border theme-accent-bg text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
@@ -204,7 +204,7 @@ export function CarouselPreview() {
             key={i}
             onClick={() => setCurrent(i)}
             className={`w-4 h-4 border-2 transition-colors ${
-              i === current ? "border-amber-700 bg-amber-500" : "border-amber-400 bg-amber-200"
+              i === current ? "theme-border theme-accent-bg" : "theme-border-light theme-bg-header"
             }`}
           />
         ))}
@@ -226,12 +226,12 @@ export function MasonryPreview() {
 
   return (
     <div className="w-full max-w-sm font-mono">
-      <div className="text-sm font-bold uppercase text-amber-800 dark:text-amber-300 mb-2">■ Masonry Grid</div>
+      <div className="text-sm font-bold uppercase theme-text mb-2">■ Masonry Grid</div>
       <div className="columns-2 gap-2 space-y-2">
         {items.map((item, i) => (
           <div
             key={i}
-            className={`bg-gradient-to-br ${item.color} border-4 border-amber-600 flex items-center justify-center break-inside-avoid shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]`}
+            className={`bg-gradient-to-br ${item.color} border-4 theme-border flex items-center justify-center break-inside-avoid shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]`}
             style={{ height: item.height }}
           >
             <span className="text-white font-bold">{i + 1}</span>

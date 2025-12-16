@@ -45,7 +45,7 @@ export function ToastPreview() {
           <button
             key={type}
             onClick={() => addToast(type)}
-            className="px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase text-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[3px] active:translate-y-[3px]"
+            className="px-4 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase text-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[3px] active:translate-y-[3px]"
           >
             {type}
           </button>
@@ -122,40 +122,40 @@ export function DialogPreview() {
     <div className="font-mono">
       <button
         onClick={() => setOpen(true)}
-        className="px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
+        className="px-4 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
       >
         Open Dialog
       </button>
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="w-full max-w-md border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <div className="w-full max-w-md border-4 theme-border theme-bg shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-              <h2 className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Confirm Action</h2>
-              <button onClick={() => setOpen(false)} className="p-1 hover:bg-amber-300 dark:hover:bg-amber-700">
-                <X className="w-5 h-5 text-amber-700 dark:text-amber-300" />
+            <div className="flex items-center justify-between px-4 py-3 border-b-4 theme-border theme-bg-header">
+              <h2 className="font-bold uppercase theme-text">■ Confirm Action</h2>
+              <button onClick={() => setOpen(false)} className="p-1 hover:theme-bg-header hover:theme-bg-header">
+                <X className="w-5 h-5 theme-text-muted" />
               </button>
             </div>
 
             {/* Content */}
             <div className="p-4">
-              <p className="text-amber-700 dark:text-amber-300">
+              <p className="theme-text-muted">
                 Are you sure you want to proceed with this action? This may have significant consequences.
               </p>
             </div>
 
             {/* Footer */}
-            <div className="flex gap-2 p-4 border-t-4 border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900">
+            <div className="flex gap-2 p-4 border-t-4 theme-border-light theme-bg-dark">
               <button
                 onClick={() => setOpen(false)}
-                className="flex-1 px-4 py-2 border-4 border-amber-400 dark:border-amber-600 font-bold uppercase text-amber-700 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-amber-800"
+                className="flex-1 px-4 py-2 border-4 theme-border-light font-bold uppercase theme-text-muted hover:theme-bg-header hover:theme-bg-header"
               >
                 Cancel
               </button>
               <button
                 onClick={() => setOpen(false)}
-                className="flex-1 px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
+                className="flex-1 px-4 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
               >
                 Confirm
               </button>
@@ -175,7 +175,7 @@ export function SheetPreview() {
     <div className="font-mono">
       <button
         onClick={() => setOpen(true)}
-        className="px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
+        className="px-4 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
       >
         Open Sheet
       </button>
@@ -183,38 +183,38 @@ export function SheetPreview() {
       {open && (
         <div className="fixed inset-0 z-50 flex justify-end bg-black/50">
           <div
-            className="w-full max-w-sm h-full border-l-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 shadow-[-8px_0px_0px_0px_rgba(0,0,0,0.3)]"
+            className="w-full max-w-sm h-full border-l-4 theme-border theme-bg shadow-[-8px_0px_0px_0px_rgba(0,0,0,0.3)]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-              <h2 className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Sheet Panel</h2>
-              <button onClick={() => setOpen(false)} className="p-1 hover:bg-amber-300 dark:hover:bg-amber-700">
-                <X className="w-5 h-5 text-amber-700 dark:text-amber-300" />
+            <div className="flex items-center justify-between px-4 py-3 border-b-4 theme-border theme-bg-header">
+              <h2 className="font-bold uppercase theme-text">■ Sheet Panel</h2>
+              <button onClick={() => setOpen(false)} className="p-1 hover:theme-bg-header hover:theme-bg-header">
+                <X className="w-5 h-5 theme-text-muted" />
               </button>
             </div>
 
             {/* Content */}
             <div className="p-4 space-y-4">
-              <p className="text-amber-700 dark:text-amber-300 text-sm">
+              <p className="theme-text-muted text-sm">
                 This is a slide-out sheet panel with retro styling. Perfect for forms and additional content.
               </p>
               <div className="space-y-3">
                 <div>
-                  <label className="block text-sm font-bold uppercase text-amber-800 dark:text-amber-300 mb-1">Name</label>
-                  <input className="w-full px-3 py-2 border-4 border-amber-500 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100" placeholder="ENTER NAME..." />
+                  <label className="block text-sm font-bold uppercase theme-text mb-1">Name</label>
+                  <input className="w-full px-3 py-2 border-4 theme-border theme-bg-dark theme-text" placeholder="ENTER NAME..." />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold uppercase text-amber-800 dark:text-amber-300 mb-1">Email</label>
-                  <input className="w-full px-3 py-2 border-4 border-amber-500 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100" placeholder="ENTER EMAIL..." />
+                  <label className="block text-sm font-bold uppercase theme-text mb-1">Email</label>
+                  <input className="w-full px-3 py-2 border-4 theme-border theme-bg-dark theme-text" placeholder="ENTER EMAIL..." />
                 </div>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 border-t-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
+            <div className="absolute bottom-0 left-0 right-0 p-4 border-t-4 theme-border theme-bg-header">
               <button
                 onClick={() => setOpen(false)}
-                className="w-full px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                className="w-full px-4 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
               >
                 Save Changes
               </button>
@@ -234,7 +234,7 @@ export function PopoverPreview() {
     <div className="font-mono relative">
       <button
         onClick={() => setOpen(!open)}
-        className="px-4 py-2 border-4 border-amber-600 bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200 font-bold uppercase hover:bg-amber-300 dark:hover:bg-amber-700 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]"
+        className="px-4 py-2 border-4 theme-border theme-bg-header theme-text font-bold uppercase hover:theme-bg-header hover:theme-bg-header shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]"
       >
         <Bell className="w-5 h-5 inline mr-2" />
         Notifications
@@ -243,24 +243,24 @@ export function PopoverPreview() {
       {open && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute z-20 top-full left-0 mt-2 w-72 border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-            <div className="px-3 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-              <span className="font-bold uppercase text-sm text-amber-900 dark:text-amber-100">■ Notifications (3)</span>
+          <div className="absolute z-20 top-full left-0 mt-2 w-72 border-4 theme-border theme-bg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <div className="px-3 py-2 border-b-4 theme-border theme-bg-header">
+              <span className="font-bold uppercase text-sm theme-text">■ Notifications (3)</span>
             </div>
-            <div className="divide-y-2 divide-amber-300 dark:divide-amber-700">
+            <div className="divide-y-2 theme-border-light">
               {[
                 { title: "New message", desc: "You have a new message from John" },
                 { title: "Update available", desc: "Version 2.0 is now available" },
                 { title: "Task completed", desc: "Your export is ready" },
               ].map((item, i) => (
-                <div key={i} className="px-3 py-2 hover:bg-amber-100 dark:hover:bg-amber-900 cursor-pointer">
-                  <div className="font-bold text-sm text-amber-800 dark:text-amber-200 uppercase">{item.title}</div>
-                  <div className="text-xs text-amber-600 dark:text-amber-400">{item.desc}</div>
+                <div key={i} className="px-3 py-2 hover:theme-bg-dark dark:hover:theme-bg-dark cursor-pointer">
+                  <div className="font-bold text-sm theme-text uppercase">{item.title}</div>
+                  <div className="text-xs theme-text-muted">{item.desc}</div>
                 </div>
               ))}
             </div>
-            <div className="px-3 py-2 border-t-4 border-amber-400 dark:border-amber-600">
-              <button className="w-full text-center text-sm text-amber-600 dark:text-amber-400 uppercase font-bold hover:text-amber-800">
+            <div className="px-3 py-2 border-t-4 theme-border-light">
+              <button className="w-full text-center text-sm theme-text-muted uppercase font-bold hover:theme-text">
                 View All →
               </button>
             </div>
@@ -289,14 +289,14 @@ export function TooltipPreview() {
             <button
               onMouseEnter={() => setActiveTooltip(btn.id)}
               onMouseLeave={() => setActiveTooltip(null)}
-              className="p-3 border-4 border-amber-500 bg-amber-200 dark:bg-amber-800 hover:bg-amber-300 dark:hover:bg-amber-700 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
+              className="p-3 border-4 theme-border theme-bg-header hover:theme-bg-header hover:theme-bg-header shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
             >
-              <btn.icon className="w-5 h-5 text-amber-700 dark:text-amber-300" />
+              <btn.icon className="w-5 h-5 theme-text-muted" />
             </button>
             {activeTooltip === btn.id && (
-              <div className="absolute z-10 bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1 border-4 border-amber-700 bg-amber-900 text-amber-100 text-xs uppercase font-bold whitespace-nowrap shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <div className="absolute z-10 bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1 border-4 theme-border theme-bg-dark theme-text text-xs uppercase font-bold whitespace-nowrap shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                 {btn.tooltip}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-amber-900" />
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent theme-border" />
               </div>
             )}
           </div>
@@ -317,46 +317,46 @@ export function SkeletonPreview() {
 
   return (
     <div className="w-full max-w-sm font-mono">
-      <div className="p-4 border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+      <div className="p-4 border-4 theme-border theme-bg">
         {loading ? (
           <div className="space-y-3 animate-pulse">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-amber-300 dark:bg-amber-700 border-4 border-amber-400 dark:border-amber-600" />
+              <div className="w-12 h-12 theme-bg-header border-4 theme-border-light" />
               <div className="flex-1 space-y-2">
-                <div className="h-4 bg-amber-300 dark:bg-amber-700 w-3/4" />
-                <div className="h-3 bg-amber-200 dark:bg-amber-800 w-1/2" />
+                <div className="h-4 theme-bg-header w-3/4" />
+                <div className="h-3 theme-bg-header w-1/2" />
               </div>
             </div>
             <div className="space-y-2">
-              <div className="h-3 bg-amber-200 dark:bg-amber-800" />
-              <div className="h-3 bg-amber-200 dark:bg-amber-800 w-5/6" />
-              <div className="h-3 bg-amber-200 dark:bg-amber-800 w-4/6" />
+              <div className="h-3 theme-bg-header" />
+              <div className="h-3 theme-bg-header w-5/6" />
+              <div className="h-3 theme-bg-header w-4/6" />
             </div>
             <div className="flex gap-2">
-              <div className="h-8 bg-amber-300 dark:bg-amber-700 flex-1" />
-              <div className="h-8 bg-amber-300 dark:bg-amber-700 flex-1" />
+              <div className="h-8 theme-bg-header flex-1" />
+              <div className="h-8 theme-bg-header flex-1" />
             </div>
           </div>
         ) : (
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-amber-500 border-4 border-amber-600 flex items-center justify-center text-white font-bold">JD</div>
+              <div className="w-12 h-12 theme-accent-bg border-4 theme-border flex items-center justify-center text-white font-bold">JD</div>
               <div>
-                <div className="font-bold text-amber-900 dark:text-amber-100 uppercase">John Doe</div>
-                <div className="text-sm text-amber-600 dark:text-amber-400">@johndoe</div>
+                <div className="font-bold theme-text uppercase">John Doe</div>
+                <div className="text-sm theme-text-muted">@johndoe</div>
               </div>
             </div>
-            <p className="text-sm text-amber-700 dark:text-amber-300">
+            <p className="text-sm theme-text-muted">
               Software developer passionate about retro UI design and pixel art.
             </p>
             <div className="flex gap-2">
-              <button className="flex-1 px-3 py-1 border-4 border-amber-500 bg-amber-500 text-white text-sm font-bold uppercase">Follow</button>
-              <button className="flex-1 px-3 py-1 border-4 border-amber-400 text-amber-700 dark:text-amber-300 text-sm font-bold uppercase">Message</button>
+              <button className="flex-1 px-3 py-1 border-4 theme-border theme-accent-bg text-white text-sm font-bold uppercase">Follow</button>
+              <button className="flex-1 px-3 py-1 border-4 theme-border-light theme-text-muted text-sm font-bold uppercase">Message</button>
             </div>
           </div>
         )}
       </div>
-      <div className="mt-2 text-center text-xs text-amber-500 uppercase">
+      <div className="mt-2 text-center text-xs theme-text-subtle uppercase">
         {loading ? "■ Loading..." : "■ Loaded!"}
       </div>
     </div>
@@ -378,13 +378,13 @@ export function ProgressPreview() {
     <div className="w-full max-w-sm font-mono space-y-4">
       {/* Linear Progress */}
       <div>
-        <div className="flex justify-between text-sm text-amber-700 dark:text-amber-300 mb-1 uppercase">
+        <div className="flex justify-between text-sm theme-text-muted mb-1 uppercase">
           <span>Progress</span>
           <span>{progress}%</span>
         </div>
-        <div className="h-6 border-4 border-amber-600 dark:border-amber-500 bg-amber-200 dark:bg-amber-800">
+        <div className="h-6 border-4 theme-border theme-bg-header">
           <div
-            className="h-full bg-amber-500 transition-all duration-300 flex items-center justify-end pr-1"
+            className="h-full theme-accent-bg transition-all duration-300 flex items-center justify-end pr-1"
             style={{ width: `${progress}%` }}
           >
             {progress > 10 && <span className="text-white text-xs font-bold">█</span>}
@@ -394,15 +394,15 @@ export function ProgressPreview() {
 
       {/* Segmented Progress */}
       <div>
-        <div className="text-sm text-amber-700 dark:text-amber-300 mb-1 uppercase">Segmented</div>
+        <div className="text-sm theme-text-muted mb-1 uppercase">Segmented</div>
         <div className="flex gap-1">
           {[0, 20, 40, 60, 80].map(threshold => (
             <div
               key={threshold}
               className={`flex-1 h-6 border-4 transition-all ${
                 progress > threshold
-                  ? "border-amber-600 bg-amber-500"
-                  : "border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900"
+                  ? "theme-border theme-accent-bg"
+                  : "theme-border-light theme-bg-dark"
               }`}
             />
           ))}
@@ -411,19 +411,19 @@ export function ProgressPreview() {
 
       {/* Steps Progress */}
       <div>
-        <div className="text-sm text-amber-700 dark:text-amber-300 mb-2 uppercase">Steps: {Math.ceil(progress / 25)}/4</div>
+        <div className="text-sm theme-text-muted mb-2 uppercase">Steps: {Math.ceil(progress / 25)}/4</div>
         <div className="flex items-center">
           {[1, 2, 3, 4].map((step, i) => (
             <div key={step} className="flex items-center flex-1">
               <div className={`w-8 h-8 border-4 flex items-center justify-center font-bold text-sm ${
                 progress >= step * 25
-                  ? "border-amber-600 bg-amber-500 text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
-                  : "border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900 text-amber-500"
+                  ? "theme-border theme-accent-bg text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
+                  : "theme-border-light theme-bg-dark theme-text-subtle"
               }`}>
                 {step}
               </div>
               {i < 3 && (
-                <div className={`flex-1 h-2 ${progress > step * 25 ? "bg-amber-500" : "bg-amber-300 dark:bg-amber-700"}`} />
+                <div className={`flex-1 h-2 ${progress > step * 25 ? "theme-accent-bg" : "theme-bg-header"}`} />
               )}
             </div>
           ))}

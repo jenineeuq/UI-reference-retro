@@ -110,7 +110,7 @@ function ChainLogo({ chain, size = "md" }: { chain: string; size?: "sm" | "md" |
   return (
     <div className={`${sizeClasses[size]} rounded-sm overflow-hidden`}>
       {TokenLogos[tokenKey] || (
-        <div className="w-full h-full bg-amber-500 flex items-center justify-center text-white font-bold text-xs">
+        <div className="w-full h-full theme-accent-bg flex items-center justify-center text-white font-bold text-xs">
           {chain.charAt(0)}
         </div>
       )}
@@ -125,7 +125,7 @@ function TokenLogo({ token, size = "md" }: { token: string; size?: "sm" | "md" |
   return (
     <div className={`${sizeClasses[size]} rounded-full overflow-hidden`}>
       {TokenLogos[token] || (
-        <div className="w-full h-full bg-amber-500 flex items-center justify-center text-white font-bold text-xs">
+        <div className="w-full h-full theme-accent-bg flex items-center justify-center text-white font-bold text-xs">
           {token.charAt(0)}
         </div>
       )}
@@ -193,7 +193,7 @@ export function WalletConnectPreview() {
         <div>
           <button
             onClick={() => setShowWallets(true)}
-            className="px-6 py-3 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center gap-2"
+            className="px-6 py-3 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center gap-2"
           >
             <Wallet className="w-5 h-5" />
             Connect Wallet
@@ -201,9 +201,9 @@ export function WalletConnectPreview() {
 
           {showWallets && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-              <div className="w-full max-w-sm border-4 border-amber-600 bg-amber-50 dark:bg-amber-950 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] animate-[bounce-in_0.3s_ease-out]">
-                <div className="px-4 py-3 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-                  <h3 className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Select Wallet</h3>
+              <div className="w-full max-w-sm border-4 theme-border theme-bg shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] animate-[bounce-in_0.3s_ease-out]">
+                <div className="px-4 py-3 border-b-4 theme-border theme-bg-header">
+                  <h3 className="font-bold uppercase theme-text">■ Select Wallet</h3>
                 </div>
                 <div className="p-4 space-y-2">
                   {wallets.map(wallet => (
@@ -211,22 +211,22 @@ export function WalletConnectPreview() {
                       key={wallet.name}
                       onClick={() => handleConnect(wallet.name)}
                       disabled={connecting !== null}
-                      className={`w-full flex items-center gap-3 px-4 py-3 border-4 border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900 hover:bg-amber-200 dark:hover:bg-amber-800 hover:border-amber-500 transition-all ${
+                      className={`w-full flex items-center gap-3 px-4 py-3 border-4 theme-border-light theme-bg-dark hover:theme-bg-header hover:theme-bg-header hover:theme-border transition-all ${
                         connecting === wallet.name ? "animate-pulse" : ""
                       }`}
                     >
                       {wallet.icon}
-                      <span className="font-bold uppercase text-amber-800 dark:text-amber-200">{wallet.name}</span>
+                      <span className="font-bold uppercase theme-text">{wallet.name}</span>
                       {connecting === wallet.name && (
-                        <RefreshCw className="w-4 h-4 ml-auto animate-spin text-amber-600" />
+                        <RefreshCw className="w-4 h-4 ml-auto animate-spin theme-text-muted" />
                       )}
                     </button>
                   ))}
                 </div>
-                <div className="p-4 border-t-4 border-amber-400">
+                <div className="p-4 border-t-4 theme-border-light">
                   <button
                     onClick={() => setShowWallets(false)}
-                    className="w-full px-4 py-2 border-4 border-amber-400 font-bold uppercase text-amber-700 hover:bg-amber-200 transition-colors"
+                    className="w-full px-4 py-2 border-4 theme-border-light font-bold uppercase theme-text-muted hover:theme-bg-header transition-colors"
                   >
                     Cancel
                   </button>
@@ -272,34 +272,34 @@ export function WalletBalancePreview() {
   const change = ((balance - 12458.32) / 12458.32 * 100);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-      <div className="px-4 py-3 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+      <div className="px-4 py-3 border-b-4 theme-border theme-bg-header">
         <div className="flex items-center justify-between">
-          <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Wallet</span>
+          <span className="font-bold uppercase theme-text">■ Wallet</span>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-amber-700 dark:text-amber-300 font-mono">0x1234...5678</span>
-            <button onClick={copyAddress} className="p-1 hover:bg-amber-300 dark:hover:bg-amber-700 transition-colors">
-              {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 text-amber-600" />}
+            <span className="text-sm theme-text-muted font-mono">0x1234...5678</span>
+            <button onClick={copyAddress} className="p-1 hover:theme-bg-header hover:theme-bg-header transition-colors">
+              {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 theme-text-muted" />}
             </button>
           </div>
         </div>
       </div>
       <div className="p-4">
-        <div className="text-4xl font-bold text-amber-900 dark:text-amber-100 transition-all">
+        <div className="text-4xl font-bold theme-text transition-all">
           ${balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </div>
         <div className={`flex items-center gap-1 mt-1 ${change >= 0 ? "text-green-600" : "text-red-500"}`}>
           {change >= 0 ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
           <span className="text-sm font-bold">{change >= 0 ? "+" : ""}{change.toFixed(2)}%</span>
-          <span className="text-xs text-amber-500">24h</span>
+          <span className="text-xs theme-text-subtle">24h</span>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2 p-4 border-t-4 border-amber-400 dark:border-amber-600">
-        <button className="px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2">
+      <div className="grid grid-cols-2 gap-2 p-4 border-t-4 theme-border-light">
+        <button className="px-4 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2">
           <ArrowUpRight className="w-4 h-4" />
           Send
         </button>
-        <button className="px-4 py-2 border-4 border-amber-500 bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200 font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2">
+        <button className="px-4 py-2 border-4 theme-border theme-bg-header theme-text font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2">
           <ArrowDownLeft className="w-4 h-4" />
           Receive
         </button>
@@ -319,29 +319,29 @@ export function NetworkSwitcherPreview() {
     <div className="font-mono relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-4 py-2 border-4 border-amber-600 bg-amber-200 dark:bg-amber-800 font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,0.5)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+        className="flex items-center gap-2 px-4 py-2 border-4 theme-border theme-bg-header font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,0.5)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
       >
         <ChainLogo chain={network} size="sm" />
-        <span className="uppercase text-amber-800 dark:text-amber-200">{network}</span>
+        <span className="uppercase theme-text">{network}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
       {open && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute z-20 top-full left-0 mt-1 w-48 border-4 border-amber-600 bg-amber-50 dark:bg-amber-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div className="absolute z-20 top-full left-0 mt-1 w-48 border-4 theme-border theme-bg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             {networks.map(n => (
               <button
                 key={n}
                 onClick={() => { setNetwork(n); setOpen(false); }}
                 className={`w-full flex items-center gap-2 px-3 py-2 text-left uppercase font-bold text-sm transition-colors ${
                   network === n
-                    ? "bg-amber-200 dark:bg-amber-800"
-                    : "hover:bg-amber-100 dark:hover:bg-amber-900"
+                    ? "theme-bg-header"
+                    : "hover:theme-bg-dark dark:hover:theme-bg-dark"
                 }`}
               >
                 <ChainLogo chain={n} size="sm" />
-                <span className="text-amber-800 dark:text-amber-200">{n}</span>
+                <span className="theme-text">{n}</span>
                 {network === n && <Check className="w-4 h-4 ml-auto text-green-500" />}
               </button>
             ))}
@@ -375,20 +375,20 @@ export function TokenListPreview() {
   }, []);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Tokens</span>
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header">
+        <span className="font-bold uppercase theme-text">■ Tokens</span>
       </div>
-      <div className="divide-y-4 divide-amber-300 dark:divide-amber-700">
+      <div className="divide-y-4 theme-border-light">
         {tokens.map(token => (
-          <div key={token.symbol} className="flex items-center gap-3 px-4 py-3 hover:bg-amber-100 dark:hover:bg-amber-900 transition-colors cursor-pointer">
+          <div key={token.symbol} className="flex items-center gap-3 px-4 py-3 hover:theme-bg-dark dark:hover:theme-bg-dark transition-colors cursor-pointer">
             <TokenLogo token={token.symbol} />
             <div className="flex-1">
-              <div className="font-bold text-amber-900 dark:text-amber-100">{token.symbol}</div>
-              <div className="text-xs text-amber-600 dark:text-amber-400">{token.name}</div>
+              <div className="font-bold theme-text">{token.symbol}</div>
+              <div className="text-xs theme-text-muted">{token.name}</div>
             </div>
             <div className="text-right">
-              <div className="font-bold text-amber-900 dark:text-amber-100">{token.balance}</div>
+              <div className="font-bold theme-text">{token.balance}</div>
               <div className={`text-xs font-bold ${token.change >= 0 ? "text-green-600" : "text-red-500"}`}>
                 ${token.value.toLocaleString(undefined, { maximumFractionDigits: 2 })} ({token.change >= 0 ? "+" : ""}{token.change.toFixed(1)}%)
               </div>
@@ -411,8 +411,8 @@ export function TokenInputPreview() {
 
   return (
     <div className="w-full max-w-sm font-mono">
-      <div className="border-4 border-amber-600 dark:border-amber-500 bg-amber-100 dark:bg-amber-900 p-4">
-        <div className="flex justify-between mb-2 text-sm text-amber-600 dark:text-amber-400 uppercase">
+      <div className="border-4 theme-border theme-bg-dark p-4">
+        <div className="flex justify-between mb-2 text-sm theme-text-muted uppercase">
           <span>Amount</span>
           <span>Balance: {balances[selectedToken]} {selectedToken}</span>
         </div>
@@ -421,30 +421,30 @@ export function TokenInputPreview() {
             type="text"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="flex-1 bg-transparent text-2xl font-bold text-amber-900 dark:text-amber-100 focus:outline-none"
+            className="flex-1 bg-transparent text-2xl font-bold theme-text focus:outline-none"
             placeholder="0.0"
           />
           <div className="relative">
             <button
               onClick={() => setShowTokens(!showTokens)}
-              className="flex items-center gap-2 px-3 py-2 border-4 border-amber-500 bg-amber-200 dark:bg-amber-800 font-bold hover:bg-amber-300 dark:hover:bg-amber-700 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 border-4 theme-border theme-bg-header font-bold hover:theme-bg-header hover:theme-bg-header transition-colors"
             >
               <TokenLogo token={selectedToken} size="sm" />
-              <span className="text-amber-800 dark:text-amber-200">{selectedToken}</span>
+              <span className="theme-text">{selectedToken}</span>
               <ChevronDown className={`w-4 h-4 transition-transform ${showTokens ? "rotate-180" : ""}`} />
             </button>
             {showTokens && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setShowTokens(false)} />
-                <div className="absolute z-20 top-full right-0 mt-1 w-40 border-4 border-amber-500 bg-amber-50 dark:bg-amber-950 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <div className="absolute z-20 top-full right-0 mt-1 w-40 border-4 theme-border theme-bg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                   {tokens.map(t => (
                     <button
                       key={t}
                       onClick={() => { setSelectedToken(t); setShowTokens(false); }}
-                      className="w-full flex items-center gap-2 px-3 py-2 hover:bg-amber-200 dark:hover:bg-amber-800 transition-colors"
+                      className="w-full flex items-center gap-2 px-3 py-2 hover:theme-bg-header hover:theme-bg-header transition-colors"
                     >
                       <TokenLogo token={t} size="sm" />
-                      <span className="font-bold text-amber-800 dark:text-amber-200">{t}</span>
+                      <span className="font-bold theme-text">{t}</span>
                     </button>
                   ))}
                 </div>
@@ -457,7 +457,7 @@ export function TokenInputPreview() {
             <button
               key={pct}
               onClick={() => setAmount(pct === "MAX" ? balances[selectedToken] : (parseFloat(balances[selectedToken].replace(",", "")) * parseInt(pct) / 100).toFixed(4))}
-              className="flex-1 px-2 py-1 border-2 border-amber-500 text-xs font-bold uppercase text-amber-700 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-amber-800 transition-colors"
+              className="flex-1 px-2 py-1 border-2 theme-border text-xs font-bold uppercase theme-text-muted hover:theme-bg-header hover:theme-bg-header transition-colors"
             >
               {pct}
             </button>
@@ -478,16 +478,16 @@ export function TokenApprovalPreview() {
   };
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-3 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-        <h3 className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Token Approval</h3>
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-3 border-b-4 theme-border theme-bg-header">
+        <h3 className="font-bold uppercase theme-text">■ Token Approval</h3>
       </div>
       <div className="p-4 space-y-4">
         <div className="flex items-center gap-3">
           <TokenLogo token="USDC" size="lg" />
           <div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">USDC</div>
-            <div className="text-sm text-amber-600 dark:text-amber-400">USD Coin</div>
+            <div className="font-bold theme-text">USDC</div>
+            <div className="text-sm theme-text-muted">USD Coin</div>
           </div>
         </div>
         <div className="p-3 border-4 border-yellow-500 bg-yellow-100 dark:bg-yellow-900/30">
@@ -505,8 +505,8 @@ export function TokenApprovalPreview() {
             status === "approved"
               ? "border-green-600 bg-green-500 text-white"
               : status === "approving"
-              ? "border-amber-500 bg-amber-400 text-white cursor-wait"
-              : "border-amber-600 bg-amber-500 text-white hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
+              ? "theme-border theme-bg-header text-white cursor-wait"
+              : "theme-border theme-accent-bg text-white hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
           }`}
         >
           {status === "approving" && <RefreshCw className="w-5 h-5 animate-spin" />}
@@ -533,25 +533,25 @@ export function TokenPricePreview() {
   }, []);
 
   return (
-    <div className="w-full max-w-xs font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+    <div className="w-full max-w-xs font-mono border-4 theme-border theme-bg">
       <div className="p-4">
         <div className="flex items-center gap-3 mb-3">
           <TokenLogo token="ETH" size="lg" />
           <div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">ETH</div>
-            <div className="text-xs text-amber-600 dark:text-amber-400">Ethereum</div>
+            <div className="font-bold theme-text">ETH</div>
+            <div className="text-xs theme-text-muted">Ethereum</div>
           </div>
         </div>
-        <div className="text-3xl font-bold text-amber-900 dark:text-amber-100 transition-all">
+        <div className="text-3xl font-bold theme-text transition-all">
           ${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </div>
         <div className={`flex items-center gap-2 mt-1 ${change >= 0 ? "text-green-600" : "text-red-500"}`}>
           {change >= 0 ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
           <span className="font-bold">{change >= 0 ? "+" : ""}{change.toFixed(2)}%</span>
-          <span className="text-xs text-amber-500">24h</span>
+          <span className="text-xs theme-text-subtle">24h</span>
         </div>
       </div>
-      <div className="px-4 py-2 border-t-4 border-amber-400 bg-amber-100 dark:bg-amber-900 flex justify-between text-xs text-amber-600 dark:text-amber-400 uppercase">
+      <div className="px-4 py-2 border-t-4 theme-border-light theme-bg-dark flex justify-between text-xs theme-text-muted uppercase">
         <span>Vol: $12.5B</span>
         <span>MCap: $220B</span>
       </div>
@@ -570,14 +570,14 @@ export function TransactionHistoryPreview() {
   ]);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex justify-between items-center">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ History</span>
-        <RefreshCw className="w-4 h-4 text-amber-600 dark:text-amber-400 cursor-pointer hover:rotate-180 transition-transform duration-500" />
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header flex justify-between items-center">
+        <span className="font-bold uppercase theme-text">■ History</span>
+        <RefreshCw className="w-4 h-4 theme-text-muted cursor-pointer hover:rotate-180 transition-transform duration-500" />
       </div>
-      <div className="divide-y-2 divide-amber-300 dark:divide-amber-700">
+      <div className="divide-y-2 theme-border-light">
         {txs.map((tx, i) => (
-          <div key={i} className="flex items-center gap-3 px-4 py-3 hover:bg-amber-100 dark:hover:bg-amber-900 transition-colors cursor-pointer">
+          <div key={i} className="flex items-center gap-3 px-4 py-3 hover:theme-bg-dark dark:hover:theme-bg-dark transition-colors cursor-pointer">
             <div className={`w-10 h-10 border-2 flex items-center justify-center ${
               tx.type === "send" ? "border-red-500 bg-red-100 dark:bg-red-900/30" :
               tx.type === "receive" ? "border-green-500 bg-green-100 dark:bg-green-900/30" :
@@ -588,10 +588,10 @@ export function TransactionHistoryPreview() {
                <Repeat className="w-5 h-5 text-blue-600" />}
             </div>
             <div className="flex-1">
-              <div className={`font-bold text-sm ${tx.amount.startsWith("-") ? "text-red-600" : tx.amount.startsWith("+") ? "text-green-600" : "text-amber-800 dark:text-amber-200"}`}>
+              <div className={`font-bold text-sm ${tx.amount.startsWith("-") ? "text-red-600" : tx.amount.startsWith("+") ? "text-green-600" : "theme-text"}`}>
                 {tx.amount}
               </div>
-              <div className="text-xs text-amber-500">{tx.time}</div>
+              <div className="text-xs theme-text-subtle">{tx.time}</div>
             </div>
             <div className={`px-2 py-0.5 text-xs uppercase font-bold ${
               tx.status === "completed" ? "bg-green-200 text-green-700 dark:bg-green-900/50 dark:text-green-400" :
@@ -632,7 +632,7 @@ export function TransactionStatusPreview() {
   };
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
       <div className="p-4 text-center">
         <div className={`w-16 h-16 mx-auto mb-4 border-4 flex items-center justify-center transition-all ${
           status === "pending" ? "border-yellow-500 bg-yellow-100 dark:bg-yellow-900/30" :
@@ -643,28 +643,28 @@ export function TransactionStatusPreview() {
            status === "confirmed" ? <Check className="w-8 h-8 text-green-600" /> :
            <AlertTriangle className="w-8 h-8 text-red-600" />}
         </div>
-        <h3 className="font-bold uppercase text-amber-900 dark:text-amber-100 text-lg">
+        <h3 className="font-bold uppercase theme-text text-lg">
           {status === "pending" ? "Processing..." : status === "confirmed" ? "Confirmed!" : "Failed"}
         </h3>
-        <p className="text-sm text-amber-600 dark:text-amber-400 mt-1 font-mono">
+        <p className="text-sm theme-text-muted mt-1 font-mono">
           Tx: 0x1234...abcd
         </p>
         {status === "pending" && (
-          <div className="mt-4 h-3 border-2 border-amber-500 bg-amber-200 dark:bg-amber-800 overflow-hidden">
+          <div className="mt-4 h-3 border-2 theme-border theme-bg-header overflow-hidden">
             <div
-              className="h-full bg-amber-500 transition-all duration-500"
+              className="h-full theme-accent-bg transition-all duration-500"
               style={{ width: `${progress}%` }}
             />
           </div>
         )}
       </div>
-      <div className="flex gap-1 p-2 border-t-4 border-amber-400">
+      <div className="flex gap-1 p-2 border-t-4 theme-border-light">
         {(["pending", "confirmed", "failed"] as const).map(s => (
           <button
             key={s}
             onClick={() => s === "pending" ? reset() : setStatus(s)}
             className={`flex-1 px-2 py-1 text-xs uppercase font-bold transition-colors ${
-              status === s ? "bg-amber-500 text-white" : "bg-amber-200 dark:bg-amber-800 text-amber-700 dark:text-amber-300 hover:bg-amber-300 dark:hover:bg-amber-700"
+              status === s ? "theme-accent-bg text-white" : "theme-bg-header theme-text-muted hover:theme-bg-header hover:theme-bg-header"
             }`}
           >
             {s}
@@ -696,10 +696,10 @@ export function GasEstimatorPreview() {
   }, []);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex items-center gap-2">
-        <Zap className="w-4 h-4 text-amber-700" />
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">Gas Settings</span>
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header flex items-center gap-2">
+        <Zap className="w-4 h-4 theme-text-muted" />
+        <span className="font-bold uppercase theme-text">Gas Settings</span>
       </div>
       <div className="p-4 space-y-2">
         {gasData.map(opt => (
@@ -708,17 +708,17 @@ export function GasEstimatorPreview() {
             onClick={() => setSpeed(opt.id)}
             className={`w-full flex items-center justify-between px-4 py-3 border-4 transition-all ${
               speed === opt.id
-                ? "border-amber-600 bg-amber-200 dark:bg-amber-800 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]"
-                : "border-amber-300 dark:border-amber-700 hover:border-amber-500"
+                ? "theme-border theme-bg-header shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]"
+                : "theme-border-light hover:theme-border"
             }`}
           >
             <div>
-              <div className="font-bold uppercase text-amber-900 dark:text-amber-100">{opt.label}</div>
-              <div className="text-xs text-amber-600 dark:text-amber-400">{opt.time}</div>
+              <div className="font-bold uppercase theme-text">{opt.label}</div>
+              <div className="text-xs theme-text-muted">{opt.time}</div>
             </div>
             <div className="text-right">
-              <div className="font-bold text-amber-900 dark:text-amber-100">{opt.gwei} Gwei</div>
-              <div className="text-xs text-amber-500">${opt.cost.toFixed(2)}</div>
+              <div className="font-bold theme-text">{opt.gwei} Gwei</div>
+              <div className="text-xs theme-text-subtle">${opt.cost.toFixed(2)}</div>
             </div>
           </button>
         ))}
@@ -749,25 +749,25 @@ export function SwapInterfacePreview() {
   };
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex justify-between">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Swap</span>
-        <Settings className="w-5 h-5 text-amber-600 cursor-pointer hover:rotate-90 transition-transform" />
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header flex justify-between">
+        <span className="font-bold uppercase theme-text">■ Swap</span>
+        <Settings className="w-5 h-5 theme-text-muted cursor-pointer hover:rotate-90 transition-transform" />
       </div>
       <div className="p-4 space-y-2">
         {/* From */}
-        <div className="p-3 border-4 border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900">
-          <div className="text-xs text-amber-500 uppercase mb-1">From</div>
+        <div className="p-3 border-4 theme-border-light theme-bg-dark">
+          <div className="text-xs theme-text-subtle uppercase mb-1">From</div>
           <div className="flex items-center gap-2">
             <input
               type="text"
               value={fromAmount}
               onChange={(e) => setFromAmount(e.target.value)}
-              className="flex-1 bg-transparent text-xl font-bold text-amber-900 dark:text-amber-100 focus:outline-none"
+              className="flex-1 bg-transparent text-xl font-bold theme-text focus:outline-none"
             />
-            <div className="flex items-center gap-1 px-2 py-1 border-2 border-amber-500 bg-amber-200 dark:bg-amber-800">
+            <div className="flex items-center gap-1 px-2 py-1 border-2 theme-border theme-bg-header">
               <TokenLogo token={fromToken} size="sm" />
-              <span className="font-bold text-sm text-amber-800 dark:text-amber-200">{fromToken}</span>
+              <span className="font-bold text-sm theme-text">{fromToken}</span>
             </div>
           </div>
         </div>
@@ -776,31 +776,31 @@ export function SwapInterfacePreview() {
         <div className="flex justify-center -my-1 relative z-10">
           <button
             onClick={swapTokens}
-            className="p-2 border-4 border-amber-600 bg-amber-500 text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:rotate-180 transition-all"
+            className="p-2 border-4 theme-border theme-accent-bg text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:rotate-180 transition-all"
           >
             <ArrowLeftRight className="w-5 h-5" />
           </button>
         </div>
 
         {/* To */}
-        <div className="p-3 border-4 border-amber-400 dark:border-amber-600 bg-amber-100 dark:bg-amber-900">
-          <div className="text-xs text-amber-500 uppercase mb-1">To</div>
+        <div className="p-3 border-4 theme-border-light theme-bg-dark">
+          <div className="text-xs theme-text-subtle uppercase mb-1">To</div>
           <div className="flex items-center gap-2">
-            <span className="flex-1 text-xl font-bold text-amber-900 dark:text-amber-100">
+            <span className="flex-1 text-xl font-bold theme-text">
               {(parseFloat(fromAmount || "0") * rate).toLocaleString(undefined, { maximumFractionDigits: 2 })}
             </span>
-            <div className="flex items-center gap-1 px-2 py-1 border-2 border-amber-500 bg-amber-200 dark:bg-amber-800">
+            <div className="flex items-center gap-1 px-2 py-1 border-2 theme-border theme-bg-header">
               <TokenLogo token={toToken} size="sm" />
-              <span className="font-bold text-sm text-amber-800 dark:text-amber-200">{toToken}</span>
+              <span className="font-bold text-sm theme-text">{toToken}</span>
             </div>
           </div>
         </div>
 
-        <div className="text-xs text-amber-500 text-center">
+        <div className="text-xs theme-text-subtle text-center">
           1 {fromToken} = {rate.toLocaleString(undefined, { maximumFractionDigits: 2 })} {toToken}
         </div>
 
-        <button className="w-full px-4 py-3 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+        <button className="w-full px-4 py-3 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
           Swap
         </button>
       </div>
@@ -822,38 +822,38 @@ export function LiquidityPoolPreview() {
   }, []);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Liquidity Pool</span>
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header">
+        <span className="font-bold uppercase theme-text">■ Liquidity Pool</span>
       </div>
       <div className="p-4">
         <div className="flex items-center gap-2 mb-3">
           <div className="flex -space-x-2">
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-600 z-10">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 theme-border z-10">
               {TokenLogos.ETH}
             </div>
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-600">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 theme-border">
               {TokenLogos.USDC}
             </div>
           </div>
-          <span className="font-bold text-amber-900 dark:text-amber-100">ETH/USDC</span>
+          <span className="font-bold theme-text">ETH/USDC</span>
           <span className="ml-auto px-2 py-0.5 bg-green-500 text-white text-xs font-bold">0.3%</span>
         </div>
         <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900">
-            <div className="text-xs text-amber-500 uppercase">TVL</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">${tvl.toFixed(1)}M</div>
+          <div className="p-2 border-2 theme-border-light theme-bg-dark">
+            <div className="text-xs theme-text-subtle uppercase">TVL</div>
+            <div className="font-bold theme-text">${tvl.toFixed(1)}M</div>
           </div>
-          <div className="p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900">
-            <div className="text-xs text-amber-500 uppercase">APY</div>
+          <div className="p-2 border-2 theme-border-light theme-bg-dark">
+            <div className="text-xs theme-text-subtle uppercase">APY</div>
             <div className="font-bold text-green-600">{apy.toFixed(1)}%</div>
           </div>
         </div>
         <div className="flex gap-2">
-          <button className="flex-1 px-3 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+          <button className="flex-1 px-3 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
             Add
           </button>
-          <button className="flex-1 px-3 py-2 border-4 border-amber-500 font-bold uppercase text-amber-700 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-amber-800 transition-colors">
+          <button className="flex-1 px-3 py-2 border-4 theme-border font-bold uppercase theme-text-muted hover:theme-bg-header hover:theme-bg-header transition-colors">
             Remove
           </button>
         </div>
@@ -877,29 +877,29 @@ export function StakingCardPreview() {
   }, [staked]);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex justify-between items-center">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Stake ETH</span>
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header flex justify-between items-center">
+        <span className="font-bold uppercase theme-text">■ Stake ETH</span>
         <span className="px-2 py-0.5 bg-green-500 text-white text-xs font-bold animate-pulse">LIVE</span>
       </div>
       <div className="p-4 space-y-4">
         <div className="flex justify-between">
           <div>
-            <div className="text-xs text-amber-500 uppercase">APY</div>
+            <div className="text-xs theme-text-subtle uppercase">APY</div>
             <div className="text-2xl font-bold text-green-600">5.2%</div>
           </div>
           <div className="text-right">
-            <div className="text-xs text-amber-500 uppercase">Total Staked</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">1.2M ETH</div>
+            <div className="text-xs theme-text-subtle uppercase">Total Staked</div>
+            <div className="font-bold theme-text">1.2M ETH</div>
           </div>
         </div>
-        <div className="p-3 border-4 border-amber-400 bg-amber-100 dark:bg-amber-900">
+        <div className="p-3 border-4 theme-border-light theme-bg-dark">
           <div className="flex justify-between text-sm">
-            <span className="text-amber-600">Your Stake</span>
-            <span className="font-bold text-amber-900 dark:text-amber-100">{staked ? "2.5 ETH" : "0 ETH"}</span>
+            <span className="theme-text-muted">Your Stake</span>
+            <span className="font-bold theme-text">{staked ? "2.5 ETH" : "0 ETH"}</span>
           </div>
           <div className="flex justify-between text-sm mt-1">
-            <span className="text-amber-600">Rewards</span>
+            <span className="theme-text-muted">Rewards</span>
             <span className="font-bold text-green-600">
               {staked ? `+${rewards.toFixed(5)} ETH` : "0 ETH"}
             </span>
@@ -908,7 +908,7 @@ export function StakingCardPreview() {
         <button
           onClick={() => { setStaked(!staked); setRewards(0); }}
           className={`w-full px-4 py-3 border-4 font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all ${
-            staked ? "border-red-600 bg-red-500 text-white" : "border-amber-600 bg-amber-500 text-white"
+            staked ? "border-red-600 bg-red-500 text-white" : "theme-border theme-accent-bg text-white"
           }`}
         >
           {staked ? "Unstake" : "Stake ETH"}
@@ -930,41 +930,41 @@ export function YieldFarmPreview() {
   }, []);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-gradient-to-r from-purple-500 to-pink-500">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border bg-gradient-to-r from-purple-500 to-pink-500">
         <span className="font-bold uppercase text-white">■ Yield Farm</span>
       </div>
       <div className="p-4 space-y-3">
         <div className="flex items-center gap-3">
           <div className="flex -space-x-2">
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-600 z-10">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 theme-border z-10">
               {TokenLogos.UNI}
             </div>
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-600">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 theme-border">
               {TokenLogos.ETH}
             </div>
           </div>
           <div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">UNI-ETH LP</div>
-            <div className="text-xs text-amber-500">Liquidity Pool</div>
+            <div className="font-bold theme-text">UNI-ETH LP</div>
+            <div className="text-xs theme-text-subtle">Liquidity Pool</div>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2">
-          <div className="p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900 text-center">
-            <div className="text-xs text-amber-500 uppercase">APR</div>
+          <div className="p-2 border-2 theme-border-light theme-bg-dark text-center">
+            <div className="text-xs theme-text-subtle uppercase">APR</div>
             <div className="font-bold text-green-600">42.5%</div>
           </div>
-          <div className="p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900 text-center">
-            <div className="text-xs text-amber-500 uppercase">TVL</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">$8.2M</div>
+          <div className="p-2 border-2 theme-border-light theme-bg-dark text-center">
+            <div className="text-xs theme-text-subtle uppercase">TVL</div>
+            <div className="font-bold theme-text">$8.2M</div>
           </div>
-          <div className="p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900 text-center">
-            <div className="text-xs text-amber-500 uppercase">Earned</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">{earned.toFixed(2)}</div>
+          <div className="p-2 border-2 theme-border-light theme-bg-dark text-center">
+            <div className="text-xs theme-text-subtle uppercase">Earned</div>
+            <div className="font-bold theme-text">{earned.toFixed(2)}</div>
           </div>
         </div>
         <div className="flex gap-2">
-          <button className="flex-1 px-3 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+          <button className="flex-1 px-3 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
             Deposit
           </button>
           <button className="flex-1 px-3 py-2 border-4 border-green-600 bg-green-500 text-white font-bold uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-1">
@@ -995,42 +995,42 @@ export function PerpPositionCardPreview() {
   const pnlPercent = ((markPrice - entryPrice) / entryPrice) * 100 * 10;
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex justify-between items-center">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header flex justify-between items-center">
         <div className="flex items-center gap-2">
           <span className={`px-2 py-0.5 text-white text-xs font-bold ${pnl >= 0 ? "bg-green-500" : "bg-red-500"}`}>LONG</span>
-          <span className="font-bold text-amber-900 dark:text-amber-100">ETH-PERP</span>
+          <span className="font-bold theme-text">ETH-PERP</span>
         </div>
-        <span className="text-xs text-amber-500 border border-amber-500 px-2 py-0.5">10x</span>
+        <span className="text-xs theme-text-subtle border theme-border px-2 py-0.5">10x</span>
       </div>
       <div className="p-4 space-y-3">
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <div className="text-xs text-amber-500 uppercase">Entry Price</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">${entryPrice.toFixed(2)}</div>
+            <div className="text-xs theme-text-subtle uppercase">Entry Price</div>
+            <div className="font-bold theme-text">${entryPrice.toFixed(2)}</div>
           </div>
           <div>
-            <div className="text-xs text-amber-500 uppercase">Mark Price</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100 transition-all">${markPrice.toFixed(2)}</div>
+            <div className="text-xs theme-text-subtle uppercase">Mark Price</div>
+            <div className="font-bold theme-text transition-all">${markPrice.toFixed(2)}</div>
           </div>
           <div>
-            <div className="text-xs text-amber-500 uppercase">Size</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">0.5 ETH</div>
+            <div className="text-xs theme-text-subtle uppercase">Size</div>
+            <div className="font-bold theme-text">0.5 ETH</div>
           </div>
           <div>
-            <div className="text-xs text-amber-500 uppercase">PnL</div>
+            <div className="text-xs theme-text-subtle uppercase">PnL</div>
             <div className={`font-bold ${pnl >= 0 ? "text-green-600" : "text-red-500"}`}>
               {pnl >= 0 ? "+" : ""}${pnl.toFixed(2)} ({pnlPercent >= 0 ? "+" : ""}{pnlPercent.toFixed(1)}%)
             </div>
           </div>
         </div>
-        <div className="h-2 border-2 border-amber-500 bg-amber-200">
+        <div className="h-2 border-2 theme-border theme-bg-header">
           <div
             className={`h-full transition-all ${pnl >= 0 ? "bg-green-500" : "bg-red-500"}`}
             style={{ width: `${Math.min(100, Math.max(10, 50 + pnlPercent))}%` }}
           />
         </div>
-        <div className="flex justify-between text-xs text-amber-500">
+        <div className="flex justify-between text-xs theme-text-subtle">
           <span>Liq: $1,640.00</span>
           <span>Margin: {Math.max(0, 75 - Math.abs(pnlPercent) * 0.5).toFixed(0)}%</span>
         </div>
@@ -1087,13 +1087,13 @@ export function OrderBookPreview() {
   );
 
   return (
-    <div className="w-full max-w-xs font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-3 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex items-center justify-between">
-        <span className="font-bold uppercase text-sm text-amber-900 dark:text-amber-100">■ Order Book</span>
-        <span className="text-xs text-amber-600 dark:text-amber-400">ETH/USD</span>
+    <div className="w-full max-w-xs font-mono border-4 theme-border theme-bg">
+      <div className="px-3 py-2 border-b-4 theme-border theme-bg-header flex items-center justify-between">
+        <span className="font-bold uppercase text-sm theme-text">■ Order Book</span>
+        <span className="text-xs theme-text-muted">ETH/USD</span>
       </div>
       <div className="p-2">
-        <div className="grid grid-cols-3 text-xs text-amber-500 uppercase mb-1 px-1">
+        <div className="grid grid-cols-3 text-xs theme-text-subtle uppercase mb-1 px-1">
           <span>Price</span>
           <span className="text-center">Size</span>
           <span className="text-right">Total</span>
@@ -1106,14 +1106,14 @@ export function OrderBookPreview() {
               style={{ width: `${(ask.total / maxTotal) * 100}%` }}
             />
             <span className="text-red-500 font-bold relative z-10">{ask.price.toFixed(2)}</span>
-            <span className="text-center text-amber-700 dark:text-amber-300 relative z-10">{ask.size.toFixed(2)}</span>
-            <span className="text-right text-amber-500 relative z-10">{ask.total.toFixed(1)}</span>
+            <span className="text-center theme-text-muted relative z-10">{ask.size.toFixed(2)}</span>
+            <span className="text-right theme-text-subtle relative z-10">{ask.total.toFixed(1)}</span>
           </div>
         ))}
         {/* Spread */}
-        <div className="my-2 py-1 border-y-2 border-amber-400 text-center bg-amber-100 dark:bg-amber-900">
-          <span className="text-amber-900 dark:text-amber-100 font-bold">{orderBook.spread.toFixed(2)}</span>
-          <span className="text-xs text-amber-500 ml-2">
+        <div className="my-2 py-1 border-y-2 theme-border-light text-center theme-bg-dark">
+          <span className="theme-text font-bold">{orderBook.spread.toFixed(2)}</span>
+          <span className="text-xs theme-text-subtle ml-2">
             Spread: {((orderBook.asks[0].price - orderBook.bids[0].price) / orderBook.spread * 100).toFixed(3)}%
           </span>
         </div>
@@ -1125,8 +1125,8 @@ export function OrderBookPreview() {
               style={{ width: `${(bid.total / maxTotal) * 100}%`, marginLeft: 'auto' }}
             />
             <span className="text-green-600 font-bold relative z-10">{bid.price.toFixed(2)}</span>
-            <span className="text-center text-amber-700 dark:text-amber-300 relative z-10">{bid.size.toFixed(2)}</span>
-            <span className="text-right text-amber-500 relative z-10">{bid.total.toFixed(1)}</span>
+            <span className="text-center theme-text-muted relative z-10">{bid.size.toFixed(2)}</span>
+            <span className="text-right theme-text-subtle relative z-10">{bid.total.toFixed(1)}</span>
           </div>
         ))}
       </div>
@@ -1139,11 +1139,11 @@ export function LeverageSliderPreview() {
   const [leverage, setLeverage] = useState(5);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 p-4">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg p-4">
       <div className="flex justify-between items-center mb-4">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">Leverage</span>
+        <span className="font-bold uppercase theme-text">Leverage</span>
         <span className={`text-2xl font-bold transition-colors ${
-          leverage > 50 ? "text-red-500" : leverage > 20 ? "text-yellow-500" : "text-amber-900 dark:text-amber-100"
+          leverage > 50 ? "text-red-500" : leverage > 20 ? "text-yellow-500" : "theme-text"
         }`}>{leverage}x</span>
       </div>
       <div className="relative">
@@ -1153,7 +1153,7 @@ export function LeverageSliderPreview() {
           max="100"
           value={leverage}
           onChange={(e) => setLeverage(Number(e.target.value))}
-          className="w-full h-4 appearance-none bg-amber-200 dark:bg-amber-800 border-4 border-amber-500 cursor-pointer"
+          className="w-full h-4 appearance-none theme-bg-header border-4 theme-border cursor-pointer"
           style={{
             background: `linear-gradient(to right, #f59e0b ${leverage}%, #fde68a ${leverage}%)`,
           }}
@@ -1166,8 +1166,8 @@ export function LeverageSliderPreview() {
             onClick={() => setLeverage(l)}
             className={`px-2 py-1 text-xs font-bold transition-all ${
               leverage === l
-                ? "bg-amber-500 text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
-                : "text-amber-600 hover:bg-amber-200 dark:hover:bg-amber-800"
+                ? "theme-accent-bg text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
+                : "theme-text-muted hover:theme-bg-header hover:theme-bg-header"
             }`}
           >
             {l}x
@@ -1234,15 +1234,15 @@ export function TradingPairPreview() {
             onClick={() => setPair(name)}
             className={`px-4 py-3 border-4 transition-all ${
               pair === name
-                ? "border-amber-600 bg-amber-200 dark:bg-amber-800 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]"
-                : "border-amber-400 dark:border-amber-600 hover:border-amber-500"
+                ? "theme-border theme-bg-header shadow-[3px_3px_0px_0px_rgba(0,0,0,0.5)]"
+                : "theme-border-light hover:theme-border"
             }`}
           >
             <div className="flex items-center gap-2 mb-1">
               <TokenLogo token={pairTokens[name]} size="sm" />
-              <span className="font-bold text-amber-900 dark:text-amber-100">{name}</span>
+              <span className="font-bold theme-text">{name}</span>
             </div>
-            <div className="text-sm text-amber-700 dark:text-amber-300">
+            <div className="text-sm theme-text-muted">
               ${data.price.toLocaleString(undefined, { maximumFractionDigits: 2 })}
             </div>
             <div className={`text-xs font-bold ${data.change >= 0 ? "text-green-600" : "text-red-500"}`}>
@@ -1276,29 +1276,29 @@ export function FundingRatePreview() {
   }, []);
 
   return (
-    <div className="w-full max-w-xs font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-        <span className="font-bold uppercase text-sm text-amber-900 dark:text-amber-100">■ Funding Rate</span>
+    <div className="w-full max-w-xs font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header">
+        <span className="font-bold uppercase text-sm theme-text">■ Funding Rate</span>
       </div>
       <div className="p-4">
         <div className="text-center mb-4">
           <div className={`text-3xl font-bold ${rate >= 0 ? "text-green-600" : "text-red-500"}`}>
             {rate >= 0 ? "+" : ""}{(rate * 100).toFixed(4)}%
           </div>
-          <div className="text-xs text-amber-500 uppercase mt-1">
+          <div className="text-xs theme-text-subtle uppercase mt-1">
             {rate >= 0 ? "Longs pay shorts" : "Shorts pay longs"}
           </div>
         </div>
-        <div className="flex justify-between text-sm border-t-2 border-amber-400 pt-3">
+        <div className="flex justify-between text-sm border-t-2 theme-border-light pt-3">
           <div>
-            <div className="text-xs text-amber-500 uppercase">Next in</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100 font-mono">
+            <div className="text-xs theme-text-subtle uppercase">Next in</div>
+            <div className="font-bold theme-text font-mono">
               {String(countdown.h).padStart(2, '0')}:{String(countdown.m).padStart(2, '0')}:{String(countdown.s).padStart(2, '0')}
             </div>
           </div>
           <div className="text-right">
-            <div className="text-xs text-amber-500 uppercase">Avg (8h)</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">0.0098%</div>
+            <div className="text-xs theme-text-subtle uppercase">Avg (8h)</div>
+            <div className="font-bold theme-text">0.0098%</div>
           </div>
         </div>
       </div>
@@ -1325,16 +1325,16 @@ export function PredictionCardPreview() {
   }, []);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex justify-between">
-        <span className="font-bold uppercase text-sm text-amber-900 dark:text-amber-100">■ Prediction</span>
-        <span className="text-xs text-amber-500 flex items-center gap-1">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header flex justify-between">
+        <span className="font-bold uppercase text-sm theme-text">■ Prediction</span>
+        <span className="text-xs theme-text-subtle flex items-center gap-1">
           <Clock className="w-3 h-3" />
           Ends in 3d 12h
         </span>
       </div>
       <div className="p-4 space-y-4">
-        <h3 className="font-bold text-amber-900 dark:text-amber-100">
+        <h3 className="font-bold theme-text">
           Will ETH reach $2,000 by end of month?
         </h3>
         <div className="grid grid-cols-2 gap-2">
@@ -1361,7 +1361,7 @@ export function PredictionCardPreview() {
             <div className="text-xl">{odds.no.toFixed(0)}%</div>
           </button>
         </div>
-        <div className="text-xs text-amber-500 flex justify-between">
+        <div className="text-xs theme-text-subtle flex justify-between">
           <span>Volume: $125,432</span>
           <span>Liquidity: $45,000</span>
         </div>
@@ -1390,7 +1390,7 @@ export function OutcomeBarPreview() {
 
   return (
     <div className="w-full max-w-sm font-mono">
-      <div className="flex h-10 border-4 border-amber-600 overflow-hidden">
+      <div className="flex h-10 border-4 theme-border overflow-hidden">
         {outcomes.map(o => (
           <div
             key={o.label}
@@ -1430,12 +1430,12 @@ export function MarketStatsPreview() {
   };
 
   return (
-    <div className="w-full max-w-md font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 p-4">
+    <div className="w-full max-w-md font-mono border-4 theme-border theme-bg p-4">
       <div className="grid grid-cols-4 gap-2">
         {stats.map(stat => (
-          <div key={stat.label} className="text-center p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900">
-            <div className="text-xs text-amber-500 uppercase">{stat.label}</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">
+          <div key={stat.label} className="text-center p-2 border-2 theme-border-light theme-bg-dark">
+            <div className="text-xs theme-text-subtle uppercase">{stat.label}</div>
+            <div className="font-bold theme-text">
               {stat.label === "Volume" ? `$${stat.value.toFixed(1)}M` : formatValue(stat.label, stat.value)}
             </div>
           </div>
@@ -1498,14 +1498,14 @@ export function NFTCardPreview() {
   const nft = sampleNFTs[0];
 
   return (
-    <div className="w-full max-w-xs font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-300">
-      <div className="aspect-square border-b-4 border-amber-500 relative overflow-hidden">
+    <div className="w-full max-w-xs font-mono border-4 theme-border theme-bg group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all duration-300">
+      <div className="aspect-square border-b-4 theme-border relative overflow-hidden">
         <NFTImage type={nft.image} id={nft.id} />
         <div className="absolute top-2 right-2">
           <button
             onClick={() => setLiked(!liked)}
-            className={`w-8 h-8 border-2 border-amber-600 flex items-center justify-center transition-all ${
-              liked ? "bg-red-500 text-white" : "bg-amber-100 dark:bg-amber-900 text-amber-600 hover:bg-amber-200"
+            className={`w-8 h-8 border-2 theme-border flex items-center justify-center transition-all ${
+              liked ? "bg-red-500 text-white" : "theme-bg-dark theme-text-muted hover:theme-bg-header"
             }`}
           >
             {liked ? "♥" : "♡"}
@@ -1525,22 +1525,22 @@ export function NFTCardPreview() {
       <div className="p-4">
         <div className="flex justify-between items-start mb-2">
           <div>
-            <div className="font-bold text-amber-900 dark:text-amber-100 group-hover:text-amber-600 transition-colors">
+            <div className="font-bold theme-text group-hover:theme-text-muted transition-colors">
               {nft.name} #{nft.id}
             </div>
-            <div className="text-xs text-amber-500">{nft.collection}</div>
+            <div className="text-xs theme-text-subtle">{nft.collection}</div>
           </div>
-          <span className="px-2 py-0.5 bg-amber-500 text-white text-xs font-bold">#{nft.id}</span>
+          <span className="px-2 py-0.5 theme-accent-bg text-white text-xs font-bold">#{nft.id}</span>
         </div>
-        <div className="flex justify-between items-center pt-3 border-t-2 border-amber-400">
+        <div className="flex justify-between items-center pt-3 border-t-2 theme-border-light">
           <div>
-            <div className="text-xs text-amber-500 uppercase">Price</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100 flex items-center gap-1">
+            <div className="text-xs theme-text-subtle uppercase">Price</div>
+            <div className="font-bold theme-text flex items-center gap-1">
               <div className="w-4 h-4">{TokenLogos.ETH}</div>
               {nft.price} ETH
             </div>
           </div>
-          <button className="px-4 py-2 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+          <button className="px-4 py-2 border-4 theme-border theme-accent-bg text-white font-bold uppercase text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
             Buy
           </button>
         </div>
@@ -1559,7 +1559,7 @@ export function NFTGalleryPreview() {
         {sampleNFTs.map((nft) => (
           <div
             key={nft.id}
-            className="border-4 border-amber-500 hover:border-amber-600 transition-all cursor-pointer group relative"
+            className="border-4 theme-border hover:theme-border transition-all cursor-pointer group relative"
             onMouseEnter={() => setHoveredNft(nft.id)}
             onMouseLeave={() => setHoveredNft(null)}
           >
@@ -1571,8 +1571,8 @@ export function NFTGalleryPreview() {
             {hoveredNft === nft.id && (
               <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center p-2 text-center">
                 <div className="text-white font-bold text-xs uppercase">{nft.name}</div>
-                <div className="text-amber-400 text-xs">{nft.price} ETH</div>
-                <button className="mt-2 px-2 py-1 border-2 border-amber-500 bg-amber-500 text-white text-xs font-bold uppercase">
+                <div className="theme-text-subtle text-xs">{nft.price} ETH</div>
+                <button className="mt-2 px-2 py-1 border-2 theme-border theme-accent-bg text-white text-xs font-bold uppercase">
                   View
                 </button>
               </div>
@@ -1594,13 +1594,13 @@ export function NFTBidPreview() {
   ]);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Place Bid</span>
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header">
+        <span className="font-bold uppercase theme-text">■ Place Bid</span>
       </div>
       <div className="p-4 space-y-4">
         <div>
-          <div className="flex justify-between text-xs text-amber-500 uppercase mb-1">
+          <div className="flex justify-between text-xs theme-text-subtle uppercase mb-1">
             <span>Current Highest</span>
             <span className="flex items-center gap-1">
               <div className="w-3 h-3">{TokenLogos.ETH}</div>
@@ -1612,9 +1612,9 @@ export function NFTBidPreview() {
               type="text"
               value={bid}
               onChange={(e) => setBid(e.target.value)}
-              className="flex-1 px-3 py-2 border-4 border-amber-500 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100 font-bold text-xl focus:outline-none focus:shadow-[3px_3px_0px_0px_rgba(180,83,9,1)]"
+              className="flex-1 px-3 py-2 border-4 theme-border theme-bg-dark theme-text font-bold text-xl focus:outline-none focus:shadow-[3px_3px_0px_0px_rgba(180,83,9,1)]"
             />
-            <span className="px-3 py-2 border-4 border-amber-500 bg-amber-200 dark:bg-amber-800 font-bold text-amber-700 dark:text-amber-300 flex items-center gap-1">
+            <span className="px-3 py-2 border-4 theme-border theme-bg-header font-bold theme-text-muted flex items-center gap-1">
               <div className="w-5 h-5">{TokenLogos.ETH}</div>
               ETH
             </span>
@@ -1622,19 +1622,19 @@ export function NFTBidPreview() {
         </div>
 
         {/* Bid History */}
-        <div className="border-t-2 border-amber-400 pt-3">
-          <div className="text-xs text-amber-500 uppercase mb-2">Recent Bids</div>
+        <div className="border-t-2 theme-border-light pt-3">
+          <div className="text-xs theme-text-subtle uppercase mb-2">Recent Bids</div>
           <div className="space-y-1">
             {bidHistory.map((h, i) => (
               <div key={i} className="flex justify-between text-xs">
-                <span className="text-amber-600 dark:text-amber-400">{h.bidder}</span>
-                <span className="text-amber-900 dark:text-amber-100 font-bold">{h.amount} ETH</span>
+                <span className="theme-text-muted">{h.bidder}</span>
+                <span className="theme-text font-bold">{h.amount} ETH</span>
               </div>
             ))}
           </div>
         </div>
 
-        <button className="w-full px-4 py-3 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+        <button className="w-full px-4 py-3 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
           Place Bid
         </button>
       </div>
@@ -1656,24 +1656,24 @@ export function BridgeInterfacePreview() {
   };
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800">
-        <span className="font-bold uppercase text-amber-900 dark:text-amber-100">■ Bridge</span>
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header">
+        <span className="font-bold uppercase theme-text">■ Bridge</span>
       </div>
       <div className="p-4 space-y-3">
         {/* From Chain */}
-        <div className="p-3 border-4 border-amber-400 bg-amber-100 dark:bg-amber-900">
-          <div className="text-xs text-amber-500 uppercase mb-2">From</div>
+        <div className="p-3 border-4 theme-border-light theme-bg-dark">
+          <div className="text-xs theme-text-subtle uppercase mb-2">From</div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ChainLogo chain={fromChain} />
-              <span className="font-bold text-amber-900 dark:text-amber-100">{fromChain}</span>
+              <span className="font-bold theme-text">{fromChain}</span>
             </div>
             <input
               type="text"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="w-24 bg-transparent text-right text-xl font-bold text-amber-900 dark:text-amber-100 focus:outline-none"
+              className="w-24 bg-transparent text-right text-xl font-bold theme-text focus:outline-none"
               placeholder="0.0"
             />
           </div>
@@ -1683,32 +1683,32 @@ export function BridgeInterfacePreview() {
         <div className="flex justify-center">
           <button
             onClick={swapChains}
-            className="p-2 border-4 border-amber-600 bg-amber-500 text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:rotate-180 transition-all"
+            className="p-2 border-4 theme-border theme-accent-bg text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:rotate-180 transition-all"
           >
             <ArrowLeftRight className="w-5 h-5" />
           </button>
         </div>
 
         {/* To Chain */}
-        <div className="p-3 border-4 border-amber-400 bg-amber-100 dark:bg-amber-900">
-          <div className="text-xs text-amber-500 uppercase mb-2">To</div>
+        <div className="p-3 border-4 theme-border-light theme-bg-dark">
+          <div className="text-xs theme-text-subtle uppercase mb-2">To</div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ChainLogo chain={toChain} />
-              <span className="font-bold text-amber-900 dark:text-amber-100">{toChain}</span>
+              <span className="font-bold theme-text">{toChain}</span>
             </div>
-            <span className="text-xl font-bold text-amber-900 dark:text-amber-100">
+            <span className="text-xl font-bold theme-text">
               {amount || "0.0"}
             </span>
           </div>
         </div>
 
-        <div className="text-xs text-amber-500 flex justify-between">
+        <div className="text-xs theme-text-subtle flex justify-between">
           <span>Est. time: ~15 min</span>
           <span>Fee: ~$5.00</span>
         </div>
 
-        <button className="w-full px-4 py-3 border-4 border-amber-600 bg-amber-500 text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+        <button className="w-full px-4 py-3 border-4 theme-border theme-accent-bg text-white font-bold uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
           Bridge
         </button>
       </div>
@@ -1725,7 +1725,7 @@ export function ChainSelectorPreview() {
   return (
     <div className="w-full max-w-md font-mono flex items-center gap-4">
       <div className="flex-1">
-        <div className="text-xs text-amber-500 uppercase mb-1">From</div>
+        <div className="text-xs theme-text-subtle uppercase mb-1">From</div>
         <div className="relative">
           <div className="absolute left-3 top-1/2 -translate-y-1/2">
             <ChainLogo chain={from} size="sm" />
@@ -1733,15 +1733,15 @@ export function ChainSelectorPreview() {
           <select
             value={from}
             onChange={(e) => setFrom(e.target.value)}
-            className="w-full pl-10 pr-3 py-2 border-4 border-amber-500 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100 font-bold uppercase focus:outline-none appearance-none cursor-pointer"
+            className="w-full pl-10 pr-3 py-2 border-4 theme-border theme-bg-dark theme-text font-bold uppercase focus:outline-none appearance-none cursor-pointer"
           >
             {chains.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
       </div>
-      <ArrowRight className="w-6 h-6 text-amber-500 mt-5" />
+      <ArrowRight className="w-6 h-6 theme-text-subtle mt-5" />
       <div className="flex-1">
-        <div className="text-xs text-amber-500 uppercase mb-1">To</div>
+        <div className="text-xs theme-text-subtle uppercase mb-1">To</div>
         <div className="relative">
           <div className="absolute left-3 top-1/2 -translate-y-1/2">
             <ChainLogo chain={to} size="sm" />
@@ -1749,7 +1749,7 @@ export function ChainSelectorPreview() {
           <select
             value={to}
             onChange={(e) => setTo(e.target.value)}
-            className="w-full pl-10 pr-3 py-2 border-4 border-amber-500 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100 font-bold uppercase focus:outline-none appearance-none cursor-pointer"
+            className="w-full pl-10 pr-3 py-2 border-4 theme-border theme-bg-dark theme-text font-bold uppercase focus:outline-none appearance-none cursor-pointer"
           >
             {chains.filter(c => c !== from).map(c => <option key={c} value={c}>{c}</option>)}
           </select>
@@ -1776,16 +1776,16 @@ export function ProposalCardPreview() {
   };
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
-      <div className="px-4 py-2 border-b-4 border-amber-500 bg-amber-200 dark:bg-amber-800 flex justify-between items-center">
-        <span className="font-bold uppercase text-sm text-amber-900 dark:text-amber-100">■ Proposal #42</span>
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
+      <div className="px-4 py-2 border-b-4 theme-border theme-bg-header flex justify-between items-center">
+        <span className="font-bold uppercase text-sm theme-text">■ Proposal #42</span>
         <span className="px-2 py-0.5 bg-green-500 text-white text-xs font-bold animate-pulse">ACTIVE</span>
       </div>
       <div className="p-4 space-y-3">
-        <h3 className="font-bold text-amber-900 dark:text-amber-100">
+        <h3 className="font-bold theme-text">
           Increase staking rewards by 2%
         </h3>
-        <p className="text-sm text-amber-600 dark:text-amber-400">
+        <p className="text-sm theme-text-muted">
           This proposal aims to increase the current staking rewards from 5% to 7% APY...
         </p>
         <div className="space-y-2">
@@ -1793,7 +1793,7 @@ export function ProposalCardPreview() {
             <span className="text-green-600 font-bold">For: {votes.for.toFixed(0)}%</span>
             <span className="text-red-500 font-bold">Against: {votes.against.toFixed(0)}%</span>
           </div>
-          <div className="flex h-4 border-2 border-amber-500 overflow-hidden">
+          <div className="flex h-4 border-2 theme-border overflow-hidden">
             <div className="bg-green-500 transition-all duration-500" style={{ width: `${votes.for}%` }} />
             <div className="bg-red-500 transition-all duration-500" style={{ width: `${votes.against}%` }} />
           </div>
@@ -1836,28 +1836,28 @@ export function ProposalCardPreview() {
 // VotingPower Preview
 export function VotingPowerPreview() {
   return (
-    <div className="w-full max-w-xs font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950 p-4">
+    <div className="w-full max-w-xs font-mono border-4 theme-border theme-bg p-4">
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-12 h-12 border-4 border-amber-500 bg-amber-300 dark:bg-amber-700 flex items-center justify-center">
-          <Shield className="w-6 h-6 text-amber-700 dark:text-amber-300" />
+        <div className="w-12 h-12 border-4 theme-border theme-bg-header flex items-center justify-center">
+          <Shield className="w-6 h-6 theme-text-muted" />
         </div>
         <div>
-          <div className="text-xs text-amber-500 uppercase">Voting Power</div>
-          <div className="text-2xl font-bold text-amber-900 dark:text-amber-100">1,234.56</div>
+          <div className="text-xs theme-text-subtle uppercase">Voting Power</div>
+          <div className="text-2xl font-bold theme-text">1,234.56</div>
         </div>
       </div>
       <div className="space-y-2 text-sm">
         <div className="flex justify-between">
-          <span className="text-amber-600 dark:text-amber-400">Token Balance</span>
-          <span className="font-bold text-amber-900 dark:text-amber-100">1,000.00</span>
+          <span className="theme-text-muted">Token Balance</span>
+          <span className="font-bold theme-text">1,000.00</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-amber-600 dark:text-amber-400">Delegated</span>
+          <span className="theme-text-muted">Delegated</span>
           <span className="font-bold text-green-600">+234.56</span>
         </div>
-        <div className="flex justify-between pt-2 border-t-2 border-amber-400">
-          <span className="text-amber-600 dark:text-amber-400">Proposals Voted</span>
-          <span className="font-bold text-amber-900 dark:text-amber-100">12</span>
+        <div className="flex justify-between pt-2 border-t-2 theme-border-light">
+          <span className="theme-text-muted">Proposals Voted</span>
+          <span className="font-bold theme-text">12</span>
         </div>
       </div>
     </div>
@@ -1869,30 +1869,30 @@ export function DelegateCardPreview() {
   const [delegated, setDelegated] = useState(false);
 
   return (
-    <div className="w-full max-w-sm font-mono border-4 border-amber-600 dark:border-amber-500 bg-amber-50 dark:bg-amber-950">
+    <div className="w-full max-w-sm font-mono border-4 theme-border theme-bg">
       <div className="p-4">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-12 h-12 border-4 border-amber-500 bg-purple-500 flex items-center justify-center text-white font-bold">
+          <div className="w-12 h-12 border-4 theme-border bg-purple-500 flex items-center justify-center text-white font-bold">
             VB
           </div>
           <div className="flex-1">
-            <div className="font-bold text-amber-900 dark:text-amber-100">vitalik.eth</div>
-            <div className="text-xs text-amber-500 font-mono">0x1234...5678</div>
+            <div className="font-bold theme-text">vitalik.eth</div>
+            <div className="text-xs theme-text-subtle font-mono">0x1234...5678</div>
           </div>
-          <Users className="w-5 h-5 text-amber-500" />
+          <Users className="w-5 h-5 theme-text-subtle" />
         </div>
         <div className="grid grid-cols-3 gap-2 mb-4">
-          <div className="text-center p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900">
-            <div className="text-xs text-amber-500 uppercase">Power</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">5.2M</div>
+          <div className="text-center p-2 border-2 theme-border-light theme-bg-dark">
+            <div className="text-xs theme-text-subtle uppercase">Power</div>
+            <div className="font-bold theme-text">5.2M</div>
           </div>
-          <div className="text-center p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900">
-            <div className="text-xs text-amber-500 uppercase">Delegates</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">1,234</div>
+          <div className="text-center p-2 border-2 theme-border-light theme-bg-dark">
+            <div className="text-xs theme-text-subtle uppercase">Delegates</div>
+            <div className="font-bold theme-text">1,234</div>
           </div>
-          <div className="text-center p-2 border-2 border-amber-400 bg-amber-100 dark:bg-amber-900">
-            <div className="text-xs text-amber-500 uppercase">Votes</div>
-            <div className="font-bold text-amber-900 dark:text-amber-100">42</div>
+          <div className="text-center p-2 border-2 theme-border-light theme-bg-dark">
+            <div className="text-xs theme-text-subtle uppercase">Votes</div>
+            <div className="font-bold theme-text">42</div>
           </div>
         </div>
         <button
@@ -1900,7 +1900,7 @@ export function DelegateCardPreview() {
           className={`w-full px-4 py-2 border-4 font-bold uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all ${
             delegated
               ? "border-green-600 bg-green-500 text-white"
-              : "border-amber-600 bg-amber-500 text-white"
+              : "theme-border theme-accent-bg text-white"
           }`}
         >
           {delegated ? "✓ Delegated" : "Delegate"}
